@@ -1,6 +1,7 @@
 "use client";
 import { motion } from 'framer-motion';
 import React from 'react';
+import Hero from '@/components/AboutHero';
 
 // Main Hero Component
 const HeroOne = () => {
@@ -166,7 +167,8 @@ export default function AboutPage() {
 
     return (
         <div className="bg-white pt-28">
-            {/* About Hero Section */}
+            <Hero />
+            {/* About Hero Section 
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.h1
@@ -186,7 +188,7 @@ export default function AboutPage() {
                         We are a passionate team of developers, designers, and strategists dedicated to crafting exceptional digital products.
                     </motion.p>
                 </div>
-            </section>
+            </section>*/}
 
             {/* Our Story Section */}
             <section className="py-20">

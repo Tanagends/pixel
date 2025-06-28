@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
+import Hero from '@/components/WebHero';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -51,7 +52,8 @@ export default function WebDevelopmentPage() {
 
     return (
         <div className="bg-white pt-28">
-            {/* Hero Section */}
+            <Hero />
+            {/* Hero Section 
             <section className="py-20 bg-gray-800 text-white" style={{backgroundImage: `radial-gradient(#ff5722 0.5px, transparent 0.5px), radial-gradient(#ff5722 0.5px, #1a202c 0.5px)`, backgroundSize: `20px 20px`, backgroundPosition: `0 0, 10px 10px`}}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.h1 
@@ -71,7 +73,7 @@ export default function WebDevelopmentPage() {
                         We architect and build robust, scalable, and secure web applications that power business growth and deliver exceptional user experiences.
                     </motion.p>
                 </div>
-            </section>
+            </section>*/}
             
             {/* Our Services Section */}
             <section className="py-20 bg-gray-50">

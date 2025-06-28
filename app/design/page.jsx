@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
+import Hero from '@/components/DesignHero';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -51,7 +52,7 @@ export default function GraphicDesignPage() {
 
     return (
         <div className="bg-white pt-28">
-            {/* Hero Section */}
+            {/* Hero Section 
             <section className="py-20 bg-orange-500 text-white" style={{clipPath: `ellipse(100% 55% at 48% 44%)`}}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 pb-16">
                     <motion.h1 
@@ -71,7 +72,8 @@ export default function GraphicDesignPage() {
                         We translate your brand’s essence into compelling visuals that build connection, inspire trust, and drive engagement.
                     </motion.p>
                 </div>
-            </section>
+            </section>*/}
+            <Hero />
             
             {/* Our Services Section */}
             <section className="py-20 bg-gray-50 -mt-24">
