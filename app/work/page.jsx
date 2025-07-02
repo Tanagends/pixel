@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Hero from '@/components/WorkerHero';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -73,7 +74,7 @@ export default function WorkPage() {
     
     return (
         <div className="bg-gray-50 pt-28">
-            {/* Work Hero Section */}
+            {/* Work Hero Section 
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.h1 
@@ -93,7 +94,8 @@ export default function WorkPage() {
                         A curated collection of projects where creativity, technology, and strategy intersect. Explore the results of our passion and partnership.
                     </motion.p>
                 </div>
-            </section>
+            </section>*/}
+            <Hero />
             
             {/* Main Content Section */}
             <section className="py-20">

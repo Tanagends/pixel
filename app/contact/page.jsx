@@ -1,6 +1,7 @@
 "use client";
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import Hero from '@/components/ContactHero';
 
 // Main Hero Component
 const HeroTwo = () => {
@@ -178,7 +179,7 @@ export default function ContactPage() {
 
     return (
         <div className="bg-white pt-28">
-            {/* Contact Hero Section */}
+            {/* Contact Hero Section
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.h1 
@@ -198,8 +199,9 @@ export default function ContactPage() {
                         Have a question or a project in mind? We'd love to hear from you. Fill out the form below or reach out to us directly.
                     </motion.p>
                 </div>
-            </section>
+            </section> */}
             
+            <Hero />
             {/* Contact Form & Details Section */}
             <section className="py-20">
                  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
