@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
+import Hero from '@/components/BlogHero';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -67,7 +68,7 @@ export default function BlogPage() {
     
     return (
         <div className="bg-gray-50 pt-28">
-            {/* Blog Hero Section */}
+            {/* Blog Hero Section 
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <motion.h1 
@@ -87,7 +88,8 @@ export default function BlogPage() {
                         Our thoughts on design, development, and the digital future. A journal for the curious and the creative.
                     </motion.p>
                 </div>
-            </section>
+            </section> */}
+            <Hero />
             
             {/* Main Content Section */}
             <section className="py-20">
