@@ -169,7 +169,7 @@ export default function AboutPageHero() {
     return (
         <section className="relative py-24 bg-gray-50 overflow-hidden">
              <AnimatedShapesBackground />
-             <div className="absolute inset-0 bg-gray-50/60 backdrop-blur-sm"></div>
+        {/*<div className="absolute inset-0 bg-gray-50/60 backdrop-blur-sm"></div>*/}
 
             <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <motion.h1

@@ -1,124 +1,122 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 //================================================================//
-// Particle Background Component
-// A self-contained canvas animation for the interactive background.
+// Interactive Gradient Background Component
+// Reimagined to be a vibrant, interactive nebula of light.
 //================================================================//
-const ParticleBackground = () => {
+const InteractiveBackground = () => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
-        let particles = [];
         let animationFrameId;
+        let particles = [];
 
-        // Set canvas size
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // Mouse position
-        let mouse = {
+        const pointer = {
             x: null,
             y: null,
-            radius: 150
+            // A larger radius for a more dramatic magnetic effect
+            radius: 200 
         };
 
-        window.addEventListener('mousemove', event => {
-            mouse.x = event.x;
-            mouse.y = event.y;
-        });
-        
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        const updatePointer = (e) => {
+            pointer.x = e.clientX || (e.touches && e.touches[0].clientX);
+            pointer.y = e.clientY || (e.touches && e.touches[0].clientY);
+        };
 
-        // Particle class
+        window.addEventListener('mousemove', updatePointer);
+        window.addEventListener('touchstart', updatePointer, { passive: true });
+        window.addEventListener('touchmove', updatePointer, { passive: true });
+        
+        const resetPointer = () => {
+            pointer.x = null;
+            pointer.y = null;
+        };
+        window.addEventListener('mouseout', resetPointer);
+        window.addEventListener('touchend', resetPointer);
+
         class Particle {
-            constructor(x, y, directionX, directionY, size, color) {
+            constructor(x, y, size, color) {
                 this.x = x;
                 this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
                 this.size = size;
                 this.color = color;
                 this.baseX = this.x;
                 this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
+                // Density determines how much the particle is affected by the pointer
+                this.density = (Math.random() * 40) + 5;
             }
 
             draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
                 ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
                 ctx.fill();
             }
 
             update() {
-                // Mouse interaction
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius + this.size) {
-                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                        this.x += 10;
-                    }
-                    if (mouse.x > this.x && this.x > this.size * 10) {
-                        this.x -= 10;
-                    }
-                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                        this.y += 10;
-                    }
-                    if (mouse.y > this.y && this.y > this.size * 10) {
-                        this.y -= 10;
+                // Check for pointer interaction
+                if (pointer.x && pointer.y) {
+                    let dx = pointer.x - this.x;
+                    let dy = pointer.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = pointer.radius;
+                    
+                    // The closer the particle, the stronger the pull
+                    let force = (maxDistance - distance) / maxDistance;
+
+                    if (distance < pointer.radius) {
+                        this.x -= forceDirectionX * force * this.density * 0.6;
+                        this.y -= forceDirectionY * force * this.density * 0.6;
+                    } else {
+                         // Return to base position if outside the radius
+                        if (this.x !== this.baseX) {
+                            let dx_base = this.x - this.baseX;
+                            this.x -= dx_base / 10;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy_base = this.y - this.baseY;
+                            this.y -= dy_base / 10;
+                        }
                     }
                 }
-
-                // Move particle
-                this.x += this.directionX;
-                this.y += this.directionY;
-
-                // Return to original position
-                 if (this.x !== this.baseX || this.y !== this.baseY) {
-                    let dx = this.x - this.baseX;
-                    let dy = this.y - this.baseY;
-                    this.x -= dx / 20;
-                    this.y -= dy / 20;
-                }
-
                 this.draw();
             }
         }
-        
-        // Create particle array
-        function init() {
-            particles = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 9000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 1.5) + 0.5;
-                let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * 0.4) - 0.2;
-                let directionY = (Math.random() * 0.4) - 0.2;
-                let color = Math.random() > 0.1 ? 'rgba(255, 255, 255, 0.5)' : 'rgba(255, 87, 34, 0.8)';
-                
-                particles.push(new Particle(x, y, directionX, directionY, size, color));
-            }
-        }
 
-        // Animation loop
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
+        const init = () => {
+            particles = [];
+            const numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 1.5) + 1;
+                let x = Math.random() * canvas.width;
+                let y = Math.random() * canvas.height;
+                // A more vibrant color palette
+                let color = `hsl(${Math.random() * 50 + 10}, 100%, 70%)`; 
+                particles.push(new Particle(x, y, size, color));
+            }
+        };
+
+        const animate = () => {
+            // Create a semi-transparent background for a trailing effect
+            ctx.fillStyle = 'rgba(15, 15, 25, 0.25)'; 
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (const particle of particles) {
+                particle.update();
             }
             animationFrameId = requestAnimationFrame(animate);
-        }
+        };
 
-        // Resize event
         const handleResize = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -130,109 +128,109 @@ const ParticleBackground = () => {
         init();
         animate();
 
-        // Cleanup
         return () => {
             window.removeEventListener('resize', handleResize);
-            window.removeEventListener('mousemove', () => {});
-            window.removeEventListener('mouseout', () => {});
+            window.removeEventListener('mousemove', updatePointer);
+            window.removeEventListener('mouseout', resetPointer);
+            window.removeEventListener('touchstart', updatePointer);
+            window.removeEventListener('touchmove', updatePointer);
+            window.removeEventListener('touchend', resetPointer);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
-    return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />;
+    return <canvas ref={canvasRef} className="absolute top-0 left-0 -z-10 w-full h-full" />;
 };
 
 
 //================================================================//
-// HomePageHero Component - This is the new, upgraded hero section.
+// HomePageHero Component (Redesigned)
 //================================================================//
 export default function HomePageHero() {
-
-    // Staggered animation for the container of the text
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.3,
-            },
-        },
-    };
-
-    // Animation for each word in the headline
-    const wordVariants = {
-        hidden: {
-            opacity: 0,
-            y: 20,
-            skewY: 5,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            skewY: 0,
-            transition: {
-                duration: 0.8,
-                ease: 'easeOut',
-            },
-        },
-    };
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
 
     const headline1 = "We Don't Just Build Websites.";
-    const headline2 = "We Tell Your Story To The World.";
+    const headline2 = "We Craft Your Digital Story."; // A more evocative headline
+
+    // Animation variants for each letter for a more fluid effect
+    const letterVariants = {
+        hidden: { opacity: 0, y: 50, rotate: -10 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            rotate: 0,
+            transition: {
+                delay: i * 0.03, // Stagger each letter's animation
+                duration: 0.5,
+                ease: 'easeOut'
+            },
+        }),
+    };
 
     return (
-        <section className="relative flex items-center justify-center min-h-screen text-white bg-gray-900 pt-28 overflow-hidden">
-            <ParticleBackground />
-            <div className="absolute inset-0 bg-black/30"></div>
+        <section ref={ref} className="relative flex items-center justify-center min-h-screen text-white overflow-hidden">
+            <InteractiveBackground />
             
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="relative z-10 container mx-auto px-4 text-center">
                 
-                <motion.h1
-                    className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {headline1.split(" ").map((word, index) => (
-                        <motion.span key={index} className="inline-block mr-4" variants={wordVariants}>
-                            {word}
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6">
+                    {headline1.split("").map((char, index) => (
+                        <motion.span
+                            key={index}
+                            custom={index}
+                            variants={letterVariants}
+                            initial="hidden"
+                            animate={isInView ? "visible" : "hidden"}
+                            className="inline-block"
+                        >
+                            {char === " " ? "\u00A0" : char}
                         </motion.span>
                     ))}
                     <br />
-                    <span className="text-orange-500">
-                         {headline2.split(" ").map((word, index) => (
-                            <motion.span key={index} className="inline-block mr-4" variants={wordVariants}>
-                                {word}
+                    {/* A vibrant gradient text for the second headline */}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">
+                        {headline2.split("").map((char, index) => (
+                            <motion.span
+                                key={index}
+                                custom={index + headline1.length} // Continue stagger delay
+                                variants={letterVariants}
+                                initial="hidden"
+                                animate={isInView ? "visible" : "hidden"}
+                                className="inline-block"
+                            >
+                                {char === " " ? "\u00A0" : char}
                             </motion.span>
                         ))}
                     </span>
-                </motion.h1>
+                </h1>
 
                 <motion.p
-                    className="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 mb-8"
+                    className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 mb-10"
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 1.5, ease: 'easeOut' }}
                 >
-                    PixelCrafte is a premier web development and design agency that blends creativity with technology to deliver stunning, high-performance digital solutions.
+                    PixelCrafte is a premier digital agency where creativity and code converge. We deliver stunning, high-performance web solutions that tell your unique story.
                 </motion.p>
                 
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 1.4, ease: 'easeOut' }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 1.8, ease: 'easeOut' }}
                 >
                     <motion.button
-                        className="bg-orange-500 text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg shadow-orange-500/20"
-                        whileHover={{ scale: 1.05, boxShadow: "0px 10px 30px rgba(255, 87, 34, 0.4)" }}
+                        className="bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg transition-all duration-300"
+                        whileHover={{ 
+                            scale: 1.1, 
+                            boxShadow: "0px 15px 30px rgba(239, 68, 68, 0.4)" 
+                        }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        Explore Our Work
+                        Discover Our Craft
                     </motion.button>
                 </motion.div>
             </div>
         </section>
     );
 }
-

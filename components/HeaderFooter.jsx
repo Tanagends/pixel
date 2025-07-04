@@ -167,12 +167,20 @@ const Header = () => {
                         <Logo />
                         <div className="hidden lg:flex items-center space-x-8">
                             <ul className="flex items-center space-x-8 font-medium text-gray-600">
+                                <li className="relative">                                                                                                            <motion.a href={'/'} variants={navItemVariants} whileHover="hover" whileTap="tap">Home</motion.a> {/*
+                                          <motion.div
+                                            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-orange-500 w-full focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                            variants={underlineVariants}
+                                            initial="hidden"
+                                            whileHover="visible"
+                                          /> */}
+                                  </li>
                                 <li className="relative" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
                                     <motion.button className="flex items-center space-x-1 focus:outline-none" variants={navItemVariants} whileHover="hover" whileTap="tap">
                                         <span>Services</span>
                                         <IconChevronDown className={`transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
                                     </motion.button>
-                                    <motion.div 
+                                    <motion.div
                                       className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-orange-500 w-full"
                                       variants={underlineVariants}
                                       animate={isServicesOpen ? "visible" : "hidden"}
@@ -194,7 +202,7 @@ const Header = () => {
                                 {['Work', 'About', 'Blog', 'Contact'].map((item) => (
                                     <li key={item} className="relative">
                                         <motion.a href={`/${item.toLowerCase()}`} variants={navItemVariants} whileHover="hover" whileTap="tap">{item}</motion.a>
-                                        <motion.div 
+                                        <motion.div
                                           className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-orange-500 w-full"
                                           variants={underlineVariants}
                                           initial="hidden"

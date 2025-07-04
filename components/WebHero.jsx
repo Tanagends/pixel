@@ -170,7 +170,7 @@ export default function WebDevelopmentHero() {
     return (
         <section className="relative bg-gray-900 text-white py-24 md:py-32 overflow-hidden">
             <PlexusBackground />
-            <div className="absolute inset-0 bg-black/40"></div>
+        {/*<div className="absolute inset-0 bg-black/40"></div>*/}
             
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                  <motion.h1
