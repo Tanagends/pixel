@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -17,6 +18,26 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+.hero-bg {
+    background-color: #111827; /* bg-gray-900 */
+}
+.section-bg-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+}
+.section-bg-dark-gradient {
+    background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+}
+.bento-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.bento-item:hover::after {
+    opacity: 1;
 }
 
 body {
