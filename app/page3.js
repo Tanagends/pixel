@@ -1,0 +1,353 @@
+"use client";
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import Hero from "../components/HomeHero";
+
+//================================================================//
+// 0. INLINE SVG ICONS (with new additions)
+//================================================================//
+const IconPhone = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.932-1.102-1.932-1.102-1.26-1.026-1.43-2.872-.397-4.134.183-.218.39-.423.618-.6l3.32-3.319.011-.012c.309-.308.71-.478 1.127-.478.418 0 .819.17 1.127.478l2.946 2.947c.636.636.636 1.666 0 2.302l-3.32 3.319c-.177.177-.37.334-.572.48l-1.103 1.933 6.795 3.52zM4.58 13.599c-1.33.204-2.583-.166-3.596-1.178C.007 11.444-.163 10.19.04 8.86l1.173-7.291 6.845 3.545-1.201 1.201c-1.262 1.033-2.876 1.438-4.135.422l-1.142-1.142z"/></svg>
+);
+const IconEnvelope = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
+);
+const IconLinkedin = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+);
+const IconTwitter = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.904-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.08-4.03 3.199-4.03.943 0 1.797.398 2.395 1.037.748-.147 1.451-.42 2.086-.796-.246.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.439.656-.996 1.234-1.639 1.697z"/></svg>
+);
+const IconDribbble = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.031 19.584c-3.623-.298-6.602-2.345-8.203-5.115l.021.011c2.144 2.859 5.385 4.545 8.943 4.545.243 0 .484-.008.723-.023-1.07-.373-1.524-1.593-1.484-2.835.034-1.083.743-2.012 1.71-2.456-1.02-.13-2.113.14-3.055.932-1.933 1.623-2.61 3.26-2.812 4.19.088.026.179.051.267.076zm.575-10.378c-2.394.397-4.116 2.593-4.116 4.91s1.722 4.513 4.116 4.91c.148-1.571.826-3.013 1.954-4.067.876-.822 1.903-1.413 2.945-1.75-1.296-1.571-3.21-2.697-5.06-2.922zm-7.022-2.175c.983-2.115 2.923-3.792 5.253-4.595-1.343 2.153-1.74 4.885-1.12 7.33-.272-.023-.54-.042-.81-.042-1.925 0-3.692.693-5.051 2.046l-.014-.02c.328-1.393.226-2.738-.258-4.719zM12 2.4c2.973 0 5.618 1.144 7.611 3.019-1.688-1.258-3.774-1.98-6.042-1.98-1.796 0-3.465.385-4.945 1.087.653-.82 1.65-1.376 2.766-1.747.535-.179 1.096-.279 1.61-.279zm5.405 16.292c-1.385 1.483-3.342 2.459-5.498 2.459-.142 0-.284-.005-.425-.015-1.736-2.07-2.158-4.833-1.01-7.252.339-.711.832-1.365 1.428-1.939 1.633 1.493 3.63 2.527 5.869 2.822.062.83.023 1.68-.364 2.592l.001-.002c.002 0 .002 0 0 0zm2.668-5.32c-2.09-.32-3.833-1.35-5.26-2.793.93-.832 1.455-2.022 1.455-3.237 0-.44-.06-.87-.175-1.285 2.938.815 5.106 3.421 5.106 6.545 0 .285-.018.566-.052.842-.4-.143-.825-.26-1.272-.361.023-.153.052-.303.052-.457.001-1.053-.393-2.023-1.077-2.772l-.002.001z"/></svg>
+);
+const IconChevronDown = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+);
+const IconMobileMenu = () => (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+);
+const IconArrowRight = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+);
+const IconCode = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+);
+const IconPenTool = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><path d="m11 13 2.5 2.5"/></svg>
+);
+// NEW ICONS
+const IconQuote = ({className}) => (
+    <svg className={className} viewBox="0 0 448 512" fill="currentColor"><path d="M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64h96c35.3 0 64 28.7 64 64v232zm-256 0c0 66.3-53.7 120-120 120H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H64c-35.3 0-64-28.7-64-64V64c0-35.3 28.7-64 64-64h96c35.3 0 64 28.7 64 64v232z"/></svg>
+);
+const IconStrategy = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path><path d="M15.41 15.41L12 12l-3.41 3.41"></path><path d="M12 6v6"></path></svg>
+);
+const IconSparkles = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3L9.27 9.27L3 12l6.27 2.73L12 21l2.73-6.27L21 12l-6.27-2.73L12 3z"></path><path d="M5 3v4"></path><path d="M19 3v4"></path><path d="M3 5h4"></path><path d="M17 5h4"></path><path d="M5 21v-4"></path><path d="M19 21v-4"></path><path d="M3 19h4"></path><path d="M17 19h4"></path></svg>
+);
+const IconRocket = () => (
+     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5.1,14.9l-2.2,2.2c-0.6,0.6-0.6,1.5,0,2.1l0,0c0.6,0.6,1.5,0.6,2.1,0L7,17l3-3L5.1,14.9z M19,2l-5.1,5.1l3,3L22,5 c0.6-0.6,0.6-1.5,0-2.1l0,0C21.4,2.3,20.5,2.3,19.9,2.9L19,2z M7,17l-1.8,1.8c-0.6,0.6-0.6,1.5,0,2.1l0,0c0.6,0.6,1.5,0.6,2.1,0L9,19 l3-3L7,17z M14,10L7,17l-3-3l7-7L14,10z"/></svg>
+);
+
+
+//================================================================//
+// 1. STYLES - Enhanced with new gradients and animations
+//================================================================//
+const GlobalStyles = () => (
+  <style jsx global>{`
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb; /* bg-gray-50 */
+      color: #1f2937; /* text-gray-800 */
+    }
+    .hero-bg {
+        background-color: #111827; /* bg-gray-900 */
+    }
+    .section-bg-gradient {
+        background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+    }
+    .section-bg-dark-gradient {
+        background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+    }
+    .bento-item::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    .bento-item:hover::after {
+        opacity: 1;
+    }
+  `}</style>
+);
+
+
+//================================================================//
+// 2. REUSABLE & NEW ANIMATED COMPONENTS
+//================================================================//
+const SectionHeader = ({ title, subtitle }) => (
+    <motion.div 
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6 }}
+    >
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 tracking-tight">{title}</h2>
+        <p className="text-lg text-gray-500 mt-3 max-w-2xl mx-auto">{subtitle}</p>
+    </motion.div>
+);
+
+//----------------------------------------------------------------//
+// NEW: "Why Choose Us" Section Component
+//----------------------------------------------------------------//
+const WhyChooseUs = () => {
+    const features = [
+        { icon: <IconStrategy />, title: "Strategic Thinking", description: "We dive deep into your brand's DNA to build solutions with purpose and long-term vision." },
+        { icon: <IconSparkles />, title: "Creative Excellence", description: "Our designs are not just beautiful; they are intuitive, engaging, and built to convert." },
+        { icon: <IconRocket />, title: "Proven Results", description: "We are obsessed with performance, ensuring your digital presence is fast, secure, and impactful." }
+    ];
+    
+    const cardVariants = {
+        hidden: { y: 50, opacity: 0 },
+        visible: i => ({
+            y: 0, 
+            opacity: 1, 
+            transition: { 
+                delay: i * 0.2, 
+                duration: 0.5,
+                ease: "easeOut" 
+            }
+        })
+    };
+
+    return (
+        <section className="py-24 section-bg-gradient">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <SectionHeader title="Why PixelCrafte?" subtitle="We're more than just a digital agency. We're your partners in growth." />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {features.map((feature, i) => (
+                        <motion.div 
+                            key={i}
+                            custom={i}
+                            variants={cardVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.5 }}
+                            className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100"
+                        >
+                            <div className="inline-block text-orange-500 bg-orange-100 p-4 rounded-full mb-6">
+                                {feature.icon}
+                            </div>
+                            <h3 className="text-2xl font-bold text-gray-800 mb-3">{feature.title}</h3>
+                            <p className="text-gray-600">{feature.description}</p>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+//================================================================//
+// 4. MAIN APP & PAGE (Enhanced and with new sections)
+//================================================================//
+
+//----------------------------------------------------------------//
+// HomePage Component - The star of the show
+//----------------------------------------------------------------//
+const HomePage = () => {
+    const containerVariants = {
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.15 } }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+    };
+    
+    const projects = [
+        { title: "E-commerce Platform", category: "Web Development", img: "https://placehold.co/600x400/1a202c/ff5722?text=Project+1", colSpan: 'md:col-span-2' },
+        { title: "Corporate Branding", category: "Graphic Design", img: "https://placehold.co/600x800/ff5722/1a202c?text=Project+2", rowSpan: 'md:row-span-2' },
+        { title: "SaaS Dashboard", category: "UI/UX Design", img: "https://placehold.co/600x400/1a202c/ffffff?text=Project+3" },
+        { title: "Mobile App Design", category: "UI/UX Design", img: "https://placehold.co/600x800/ff5722/ffffff?text=Project+4", rowSpan: 'md:row-span-2' },
+        { title: "Interactive Campaign", category: "Web Development", img: "https://placehold.co/600x400/ffffff/1a202c?text=Project+5", colSpan: 'md:col-span-2' },
+    ];
+
+    const testimonials = [
+        { quote: "PixelCrafte transformed our online presence. Their attention to detail and creative solutions are second to none.", name: "Jane Doe", company: "CEO, Innovate Inc." },
+        { quote: "The team is not only talented but also incredibly professional and easy to work with. Highly recommended!", name: "John Smith", company: "Marketing Director, Tech Solutions" },
+        { quote: "Our new branding is fantastic. It perfectly captures our company's essence. Thank you, PixelCrafte!", name: "Emily White", company: "Founder, Creative Co." },
+    ];
+
+    const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [testimonials.length]);
+
+    const bentoItemVariants = {
+        hidden: { scale: 0.95, opacity: 0 },
+        visible: { scale: 1, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }
+    };
+
+    return (
+        <div className="pt-28">
+            <Hero />
+
+            {/* Services Section - With a touch more flair */}
+            <section className="py-24 bg-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <SectionHeader title="Our Services" subtitle="Crafting pixel-perfect solutions for your digital needs." />
+                    <motion.div 
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                    >
+                        <motion.div className="bg-gray-50 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 group" variants={itemVariants}>
+                            <div className="p-8">
+                                <div className="text-orange-500 mb-4 transform group-hover:-rotate-6 transition-transform duration-300"><IconCode /></div>
+                                <h3 className="text-2xl font-bold text-gray-800 mb-2">Web Development</h3>
+                                <p className="text-gray-600 mb-4">From lightning-fast landing pages to complex web applications, we build robust, scalable, and secure websites that drive results.</p>
+                                <a href="#" className="font-bold text-orange-500 hover:underline flex items-center space-x-2">Learn More <IconArrowRight/></a>
+                            </div>
+                        </motion.div>
+                         <motion.div className="bg-gray-50 rounded-2xl shadow-sm hover:shadow-xl transition-shadow duration-300 group" variants={itemVariants}>
+                            <div className="p-8">
+                                <div className="text-orange-500 mb-4 transform group-hover:-rotate-6 transition-transform duration-300"><IconPenTool /></div>
+                                <h3 className="text-2xl font-bold text-gray-800 mb-2">Graphic Design</h3>
+                                <p className="text-gray-600 mb-4">We create compelling visual identities, from logos and branding to marketing materials, that tell your story and captivate your audience.</p>
+                                <a href="#" className="font-bold text-orange-500 hover:underline flex items-center space-x-2">See Our Style <IconArrowRight/></a>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </section>
+            
+            {/* NEW SECTION */}
+            <WhyChooseUs />
+
+            {/* Featured Work - Bento Grid with MORE FLAIR */}
+            <section className="py-24 bg-gray-50 section-bg-gradient">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <SectionHeader title="Featured Work" subtitle="Pixels perfected, stories brought to life."/>
+                    <motion.div 
+                        className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
+                    >
+                        {projects.map((project, index) => (
+                            <motion.div 
+                                key={index} 
+                                className={`bento-item rounded-2xl overflow-hidden group relative shadow-lg ${project.rowSpan || ''} ${project.colSpan || ''}`}
+                                variants={bentoItemVariants}
+                                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                            >
+                                <img src={project.img} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                                <div className="absolute inset-0 flex items-end p-6">
+                                    <div className="text-white transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-in-out">
+                                        <h3 className="font-bold text-xl">{project.title}</h3>
+                                        <p className="text-sm opacity-80">{project.category}</p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+             {/* Testimonials Section - With more style */}
+            <section className="py-24 bg-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                     <SectionHeader title="What Our Clients Say" subtitle="Real feedback from our valued partners." />
+                    <div className="relative max-w-3xl mx-auto h-56">
+                        <motion.div
+                           initial={{ opacity: 0, scale: 0.5 }}
+                           animate={{ opacity: 0.05, scale: 1 }}
+                           transition={{ duration: 1, delay: 0.5 }}
+                        >
+                            <IconQuote className="absolute -top-8 left-1/2 -translate-x-1/2 w-24 h-24 text-gray-200" />
+                        </motion.div>
+                        <AnimatePresence>
+                            <motion.div
+                                key={currentTestimonial}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{ duration: 0.5 }}
+                                className="absolute inset-0 flex flex-col items-center justify-center"
+                            >
+                                <p className="text-xl md:text-2xl italic text-gray-700 leading-relaxed">"{testimonials[currentTestimonial].quote}"</p>
+                                <p className="mt-6 font-bold text-gray-900">{testimonials[currentTestimonial].name}</p>
+                                <p className="text-sm text-orange-500 font-semibold">{testimonials[currentTestimonial].company}</p>
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
+                </div>
+            </section>
+
+             {/* CTA Section - More vibrant */}
+            <section className="section-bg-dark-gradient text-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+                    <motion.h2 
+                        className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
+                         initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        Have a project in mind?
+                    </motion.h2>
+                    <motion.p 
+                        className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto"
+                         initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                        Let's turn your ideas into a digital reality. We're ready to listen, collaborate, and build something extraordinary together.
+                    </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.5 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                        <motion.button 
+                            className="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/40"
+                            whileHover={{ scale: 1.05, y: -5 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        >
+                            Get in Touch
+                        </motion.button>
+                    </motion.div>
+                </div>
+            </section>
+
+        </div>
+    );
+};
+
+
+// This is the final App component that brings everything together
+export default function App() {
+  return (
+    <>
+      <GlobalStyles />
+      <HomePage />
+    </>
+  );
+}
