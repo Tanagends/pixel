@@ -2,6 +2,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import * as FaIcons from 'react-icons/fa'; // Import all icons from react-icons/fa
+import { AnimatedShapesBackground } from '@/components/AboutHero'; // Import the animated background component
+import Link from 'next/link';
+
 
 const WebsiteTypeSection = ({ type, description, price, duration, features }) => {
   // Framer Motion variants for staggered animations
@@ -22,7 +25,8 @@ const WebsiteTypeSection = ({ type, description, price, duration, features }) =>
 
   return (
     // Add this Tailwind class to your section
-    <section className="min-h-screen w-full flex items-center justify-center p-8 lg:p-16 bg-gray-50 even:bg-white relative overflow-hidden snap-center">
+    <section className="min-h-screen w-full flex items-center justify-center p-8 lg:p-16 bg-gray-50 even:bg-white relative overflow-hidden snap-center my-8 md:my-40">
+      <AnimatedShapesBackground /> {/* Background animation component */}
       {/* Optional background element for visual interest (can be animated) */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-blue-100 to-orange-100 opacity-20" // Changed indigo-50 to orange-100 for consistency with price color
@@ -60,6 +64,7 @@ const WebsiteTypeSection = ({ type, description, price, duration, features }) =>
             <p className="text-5xl lg:text-6xl font-bold text-orange-500">{price}</p>
             <p className="text-xl lg:text-2xl text-gray-600">/{duration}</p>
           </motion.div>
+          <Link href="/contact" className='text-black w-fit p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-md text-white font-bold hover:scale-110 active:scale-95'>Get Yours</Link>
         </motion.div>
 
         {/* Right Side: List of Items/Features */}

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 // Animated Background Component
 // A self-contained canvas animation for the hero background.
 //================================================================//
-const AnimatedShapesBackground = () => {
+export const AnimatedShapesBackground = () => {
     const canvasRef = useRef(null);
 
     useEffect(() => {
