@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Hero from '@/components/DesignHero';
 import GraphicDesignSection from './GraphicDesignsSection';
 import { graphicDesigns } from '@/assets';
+
 //================================================================//
 // 0. INLINE SVG ICONS
 // These are included directly to avoid external dependencies.
@@ -52,7 +53,7 @@ export default function GraphicDesignPage() {
     const processSteps = ["Empathize", "Define", "Ideate", "Prototype", "Test", "Implement"];
 
     return (
-        <div className="bg-white pt-28">
+        <div className="relative min-h-screen bg-gray-950 text-white font-sans">
             <Hero />
             {/* Our Services Section */}
             <section className="py-20 bg-gray-50 -mt-24">
@@ -140,7 +141,11 @@ export default function GraphicDesignPage() {
                     </div>
                 </div>
             </section>
-
+            <div className="bg-black">
+                    <div className="text-center my-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">Featured Design Work</h2>
+                        <p className="text-lg text-gray-400 mt-2">Ideas brought to life with purpose and flair.</p>
+                    </div>
                         {
                 graphicDesigns.map((design, index) => (
                     <GraphicDesignSection 
@@ -154,6 +159,7 @@ export default function GraphicDesignPage() {
                     />
                 ))  
             }
+            </div>
             
             {/* Design Process Section */}
              <section className="py-20 bg-white">
