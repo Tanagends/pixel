@@ -2,7 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '@/components/DesignHero';
-
+import GraphicDesignSection from './GraphicDesignsSection';
+import { graphicDesigns } from '@/assets';
 //================================================================//
 // 0. INLINE SVG ICONS
 // These are included directly to avoid external dependencies.
@@ -52,29 +53,7 @@ export default function GraphicDesignPage() {
 
     return (
         <div className="bg-white pt-28">
-            {/* Hero Section 
-            <section className="py-20 bg-orange-500 text-white" style={{clipPath: `ellipse(100% 55% at 48% 44%)`}}>
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-8 pb-16">
-                    <motion.h1 
-                        className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6}}
-                    >
-                        Crafting Visual Identities That Resonate
-                    </motion.h1>
-                    <motion.p 
-                        className="max-w-3xl mx-auto text-lg md:text-xl text-orange-100"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6, delay: 0.2}}
-                    >
-                        We translate your brand’s essence into compelling visuals that build connection, inspire trust, and drive engagement.
-                    </motion.p>
-                </div>
-            </section>*/}
             <Hero />
-            
             {/* Our Services Section */}
             <section className="py-20 bg-gray-50 -mt-24">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-12">
@@ -161,6 +140,20 @@ export default function GraphicDesignPage() {
                     </div>
                 </div>
             </section>
+
+                        {
+                graphicDesigns.map((design, index) => (
+                    <GraphicDesignSection 
+                        key={index}
+                        type={design.type}
+                        description={design.description}
+                        price={design.price}
+                        duration={design.duration}
+                        features={design.features}
+                        image={design.image}
+                    />
+                ))  
+            }
             
             {/* Design Process Section */}
              <section className="py-20 bg-white">
