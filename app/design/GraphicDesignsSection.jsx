@@ -60,7 +60,7 @@ const GraphicDesignSection = ({ type, description, price, duration, image }) => 
             variants={itemVariants}
           >
             <p className="text-5xl lg:text-6xl font-bold text-orange-500">{price}</p> {/* New color for Graphic Design */}
-            <p className="text-xl lg:text-2xl text-gray-600">/{duration}</p>
+            <p className="text-xl lg:text-2xl text-gray-400">/{duration}</p>
           </motion.div>
         </motion.div>
 
