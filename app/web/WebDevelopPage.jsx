@@ -2,6 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '@/components/WebHero';
+import { websiteTypes } from '@/assets';
+import WebsiteTypeSection from './websiteTpyeSection'
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -171,8 +173,19 @@ export default function WebDevelopmentPage() {
                         ))}
                     </div>
                 </div>
-            </section>
-            
+            </section>                        {/* Featured Work Section */}
+
+      {/* Add these Tailwind classes to your main container */}
+        {websiteTypes.map((pkg, index) => (
+          <WebsiteTypeSection
+            key={index+pkg.type}
+            type={pkg.type}
+            description={pkg.description}
+            price={pkg.price}
+            duration={pkg.duration}
+            features={pkg.features}
+          />
+        ))}
             {/* Development Process Section */}
              <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
