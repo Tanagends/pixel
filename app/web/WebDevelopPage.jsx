@@ -40,7 +40,18 @@ export default function WebDevelopmentPage() {
         }
     ];
 
-    const techStack = ["Next.js", "React", "Node.js", "TypeScript", "GraphQL", "PostgreSQL", "Docker", "AWS"];
+    const techStack = [
+        "Next.js",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "Python",
+        "C#",
+        "GraphQL",
+        "PostgreSQL",
+        "Docker",
+        "AWS"
+    ];
     
     const projects = [
         { title: "Fintech SaaS Platform", category: "Web Application", img: "https://placehold.co/600x400/1a202c/ff5722?text=Fintech+App" },
@@ -51,7 +62,7 @@ export default function WebDevelopmentPage() {
     const processSteps = ["Discovery & Strategy", "Architecture & UX", "Development", "QA & Testing", "Deployment", "Support & Growth"];
 
     return (
-        <div className="bg-white pt-28">
+        <main className="bg-white pt-28">
             <Hero />
             {/* Hero Section 
             <section className="py-20 bg-gray-800 text-white" style={{backgroundImage: `radial-gradient(#ff5722 0.5px, transparent 0.5px), radial-gradient(#ff5722 0.5px, #1a202c 0.5px)`, backgroundSize: `20px 20px`, backgroundPosition: `0 0, 10px 10px`}}>
@@ -195,7 +206,7 @@ export default function WebDevelopmentPage() {
                 </div>
             </section>
 
-        </div>
+        </main>
     );
 }
 
