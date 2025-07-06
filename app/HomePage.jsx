@@ -4,6 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Hero from "../components/HomeHero";
 import Process from "../components/Process";
 import Promotion from "../components/Promotion";
+import Services from "../components/Services";
+import CTA from "../components/CTA";
+import Testimonials from "../components/Testimonials";
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -213,7 +216,7 @@ const HomePage = () => {
                 </div>
             </motion.section> */}
 
-            {/* Services Section */}
+            {/* Services Section 
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div 
@@ -247,11 +250,12 @@ const HomePage = () => {
                         </motion.div>
                     </motion.div>
                 </div>
-            </section>
+            </section> */}
+            <Services /> 
 
             <Promotion />
 
-            {/* Featured Work - Bento Grid */}
+            {/* Featured Work - Bento Grid *
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div 
@@ -290,9 +294,80 @@ const HomePage = () => {
                         ))}
                     </motion.div>
                 </div>
+            </section>*/}
+                {/* Featured Work - Bento Grid */}
+
+            {/* Featured Work - Bento Grid */}
+          
+
+            {/* Featured Work - Bento Grid - Mobile & Desktop Friendly */}
+            <section className="py-20 bg-gray-50">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <motion.div
+                  className="text-center mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Featured Work</h2>
+                  <p className="text-lg text-gray-600 mt-2">Pixels perfected, stories told.</p>
+                </motion.div>
+
+                <motion.div
+                  className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]"
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                >
+                  {projects.map((project, index) => (
+                    <motion.div
+                      key={index}
+                      className={`rounded-2xl overflow-hidden group relative
+                        ${index === 1 || index === 3 ? 'md:row-span-2' : ''}
+                        ${index === 0 || index === 3 ? 'md:col-span-2' : ''}`}
+                      variants={itemVariants}
+                    >
+                      <img 
+                        src={project.img} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover transition-transform duration-500 ease-in-out md:group-hover:scale-110"
+                      />
+                      
+                      {/* GRADIENT OVERLAY: Visible on mobile, fades in on desktop hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100" />
+
+                      {/* TEXT CONTAINER */}
+                      <div className="absolute inset-0 flex items-end p-4 md:p-6">
+                        <div className="text-white w-full">
+                          {/* --- Title --- */}
+                          <h3 
+                            className="font-bold text-lg md:text-xl transform transition-all duration-300 ease-in-out 
+                                       opacity-100 translate-y-0 
+                                       md:opacity-0 md:translate-y-6 
+                                       md:group-hover:opacity-100 md:group-hover:translate-y-0"
+                          >
+                            {project.title}
+                          </h3>
+                          
+                          {/* --- Category --- */}
+                          <p 
+                            className="text-sm opacity-80 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out delay-100 
+                                       md:opacity-0 md:translate-y-6
+                                       md:group-hover:opacity-100 md:group-hover:translate-y-0"
+                          >
+                            {project.category}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             </section>
 
-             {/* Testimonials Section */}
+             {/* Testimonials Section
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                      <motion.div 
@@ -322,12 +397,15 @@ const HomePage = () => {
                         </AnimatePresence>
                     </div>
                 </div>
-            </section>
+            </section> */}
+
+            <Testimonials />
 
             <Process />
 
              {/* CTA Section */}
-           {/* CTA Section - More vibrant */}
+            <CTA />
+           {/* CTA Section - More vibrant 
             <section className="section-bg-dark-gradient text-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
                     <motion.h2 
@@ -364,46 +442,7 @@ const HomePage = () => {
                         </motion.button>
                     </motion.div>
                 </div>
-            </section>
-
-            
-        {/*<section className="bg-gray-800 text-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-                    <motion.h2 
-                        className="text-3xl md:text-4xl font-bold mb-4"
-                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        Have a project in mind?
-                    </motion.h2>
-                    <motion.p 
-                        className="text-lg text-gray-300 mb-8"
-                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                    >
-                        Let's turn your ideas into a digital reality.
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <motion.button 
-                            className="bg-orange-500 text-white font-bold py-4 px-8 rounded-lg text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Get in Touch
-                        </motion.button>
-                    </motion.div>
-                </div>
             </section>*/}
-
         </div>
     );
 };

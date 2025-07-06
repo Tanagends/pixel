@@ -46,5 +46,74 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
 
+.animate-blob {
+  animation: blob 7s infinite;
+}
 
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+@keyframes ascend {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+
+.animate-ascend {
+  animation-name: ascend;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  bottom: -10vh; 
+}
+
+@keyframes rise {
+  /* The "from" state of the animation */
+  from {
+    /* Start by moving the particle down by its own height (so it's fully hidden) and scaling it down */
+    transform: translateY(100%) scale(0.8);
+    opacity: 0;
+  }
+  /* Define an intermediate step to ensure it's fully visible during its journey */
+  25%, 75% {
+    opacity: 1;
+  }
+  /* The "to" state of the animation */
+  to {
+    /* Move the particle all the way to the top and slightly beyond, and scale it up */
+    transform: translateY(-100vh) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.animate-rise {
+  /* All particles will start from the bottom edge of their container */
+  bottom: 0;
+  /* Apply the animation properties */
+  animation-name: rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
