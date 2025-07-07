@@ -1,16 +1,15 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import {contactInfo } from '@/assets'
+import { Phone, Instagram, Facebook, Linkedin } from 'lucide-react';
+import Link from 'next/link';
 //================================================================//
 // 0. INLINE SVG ICONS
 // I've replaced the 'react-icons' library with inline SVGs to resolve the compilation error.
 // This removes external dependencies and makes the component more self-contained.
 //================================================================//
 
-const IconPhone = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M20 22.621l-3.521-6.795c-.008.004-1.932-1.102-1.932-1.102-1.26-1.026-1.43-2.872-.397-4.134.183-.218.39-.423.618-.6l3.32-3.319.011-.012c.309-.308.71-.478 1.127-.478.418 0 .819.17 1.127.478l2.946 2.947c.636.636.636 1.666 0 2.302l-3.32 3.319c-.177.177-.37.334-.572.48l-1.103 1.933 6.795 3.52zM4.58 13.599c-1.33.204-2.583-.166-3.596-1.178C.007 11.444-.163 10.19.04 8.86l1.173-7.291 6.845 3.545-1.201 1.201c-1.262 1.033-2.876 1.438-4.135.422l-1.142-1.142z"/></svg>
-);
 const IconEnvelope = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
 );
@@ -43,6 +42,7 @@ const IconPenTool = () => (
 //================================================================//
 // 1. STYLES - Simulating /styles/globals.css
 //================================================================//
+
 const GlobalStyles = () => (
   <style jsx global>{`
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
@@ -64,7 +64,6 @@ const GlobalStyles = () => (
     }
   `}</style>
 );
-
 
 //================================================================//
 
@@ -144,19 +143,32 @@ const Header = () => {
             <div className="bg-gray-800 text-white text-xs px-4 sm:px-6 lg:px-8">
                 <div className="container mx-auto h-8 flex justify-between items-center">
                     <div className="flex items-center space-x-4">
-                        <a href="tel:+1234567890" className="flex items-center space-x-1.5 hover:text-orange-500 transition-colors duration-300">
-                            <IconPhone />
-                            <span>+91 7674 877 532</span>
-                        </a>
-                        <a href="mailto:hello@pixelcrafte.com" className="hidden sm:flex items-center space-x-1.5 hover:text-orange-500 transition-colors duration-300">
+                        <Link href={`tel:${contactInfo.phone_1}`} className="flex items-center space-x-1.5 hover:text-orange-500 transition-colors duration-300">
+                            <Phone size={14} />
+                            <span>{contactInfo.phone_1}</span>
+                            <span>{contactInfo.phone_2}</span>
+                        </Link>
+                        <Link href={`mailto:${contactInfo.email}`} className="hidden sm:flex items-center space-x-1.5 hover:text-orange-500 transition-colors duration-300">
                             <IconEnvelope />
-                            <span>pixelcraftewt@gmail.com</span>
-                        </a>
+                            <span>{contactInfo.email}</span>
+                        </Link>
                     </div>
-                    <div className="flex items-center space-x-4">
-                        <motion.a href="#" whileHover={{ y: -2, color: "#F97316" }}><IconLinkedin /></motion.a>
-                        <motion.a href="#" whileHover={{ y: -2, color: "#F97316" }}><IconTwitter /></motion.a>
-                        <motion.a href="#" whileHover={{ y: -2, color: "#F97316" }}><IconDribbble /></motion.a>
+                    <div className="flex items-center space-x-2">
+                        {contactInfo.linkedin && (
+                            <Link href={contactInfo.linkedin} className="text-white hover:text-orange-500 transition-colors duration-300">
+                                <Linkedin size={18} className='bg-white text-gray-800 p-[2px] rounded-sm'/>
+                            </Link>
+                        )}
+                        {contactInfo.instagram && (
+                            <Link href={contactInfo.instagram} className="text-white hover:text-orange-500 transition-colors duration-300">
+                                <Instagram size={18} className='bg-white text-gray-800 p-[2px] rounded-sm' />
+                            </Link>
+                        )}
+                        {contactInfo.facebook && (
+                            <Link href={contactInfo.facebook} className="text-white hover:text-orange-500 transition-colors duration-300">
+                                <Facebook size={18} className='bg-white text-gray-800 p-[2px] rounded-sm'/>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>
@@ -168,13 +180,8 @@ const Header = () => {
                         <Logo />
                         <div className="hidden lg:flex items-center space-x-8">
                             <ul className="flex items-center space-x-8 font-medium text-gray-600">
-                                <li className="relative">                                                                                                            <motion.a href={'/'} variants={navItemVariants} whileHover="hover" whileTap="tap">Home</motion.a> {/*
-                                          <motion.div
-                                            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-orange-500 w-full focus:outline-none focus:ring-2 focus:ring-orange-500"
-                                            variants={underlineVariants}
-                                            initial="hidden"
-                                            whileHover="visible"
-                                          /> */}
+                                <li className="relative">                                                                                                            
+                                    <motion.a href={'/'} variants={navItemVariants} whileHover="hover" whileTap="tap">Home</motion.a> 
                                   </li>
                                 <li className="relative" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
                                     <motion.button className="flex items-center space-x-1 focus:outline-none" variants={navItemVariants} whileHover="hover" whileTap="tap">
