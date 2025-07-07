@@ -82,7 +82,7 @@ const GlobalStyles = () => (
 //----------------------------------------------------------------//
 // Logo Component
 //----------------------------------------------------------------//
-const Logo = () => {
+const Logo = ({className}) => {
   const svgVariants = {
     hidden: { rotate: -180, opacity: 0 },
     visible: { 
@@ -123,8 +123,7 @@ const Logo = () => {
         <rect x="8" y="8" width="16" height="16" rx="2" fill="#1a202c"/>
       </motion.svg> */}
       <span className="text-2xl font-extrabold tracking-tight">
-        <span className="text-gray-800">Pixel</span>
-        <span className="text-orange-400">Crafte</span>
+        <span className={className}>Pixel</span> <span className="text-orange-400">Crafte</span>
       </span>
     </div>
   );
@@ -256,7 +255,7 @@ const Header = () => {
             <nav className={`transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-lg shadow-md' : 'bg-white'}`}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
-                        <Logo />
+                        <Logo className="text-gray-800" />
                         <div className="hidden lg:flex items-center space-x-8">
                             <ul className="flex items-center space-x-8 font-medium text-gray-600">
                                 <li className="relative">                                                                                                            
@@ -328,7 +327,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Column 1: Brand & Newsletter */}
                     <div className="space-y-4">
-                        <Logo />
+                        <Logo className="text-white" />
                         <p className="text-gray-400 text-sm">
                             Building the Digital Future, One Pixel at a Time.
                         </p>
@@ -344,7 +343,7 @@ const Footer = () => {
                     <div className="lg:justify-self-center">
                         <h3 className="text-lg font-bold text-orange-500 mb-4">Navigate</h3>
                         <ul className="space-y-3 text-gray-300">
-                            {['Services', 'Work', 'About', 'Blog', 'Contact'].map(item => (
+                            {['Web', 'Design', 'Work', 'About', 'Blog', 'Contact'].map(item => (
                                 <li key={item}><motion.a href="#" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">{item}</motion.a></li>
                             ))}
                         </ul>
@@ -353,24 +352,30 @@ const Footer = () => {
                      <div className="lg:justify-self-center">
                         <h3 className="text-lg font-bold text-orange-500 mb-4">Our Expertise</h3>
                         <ul className="space-y-3 text-gray-300">
-                             <li><motion.a href="#" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">Web Development</motion.a></li>
-                             <li><motion.a href="#" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">Graphic Design</motion.a></li>
-                             <li><motion.a href="#" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">UI/UX Design</motion.a></li>
-                             <li><motion.a href="#" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">SEO Strategy</motion.a></li>
+                             <li><motion.a href="/web" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">Web Development</motion.a></li>
+                             <li><motion.a href="/design" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">Graphic Design</motion.a></li>
+                             <li><motion.a href="/web" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">UI/UX Design</motion.a></li>
+                             <li><motion.a href="/web" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">SEO Strategy</motion.a></li>
                         </ul>
                     </div>
                     {/* Column 4: Connect */}
                     <div>
                         <h3 className="text-lg font-bold text-orange-500 mb-4">Get in Touch</h3>
                         <div className="text-gray-300 space-y-3">
-                            <p>123 Creative Lane<br/>Innovate City, CA 90210</p>
-                            <p>+1 (234) 567-890</p>
-                            <p>hello@pixelcrafte.com</p>
+                            <Link className='block' href={`tel:${contactInfo.phone_1}`}>{contactInfo.phone_1}</Link>
+                            <Link className='block' href={`tel:${contactInfo.phone_2}`}>{contactInfo.phone_2}</Link>
+                            <Link className='block' href={`mailto:${contactInfo.email}`}>{contactInfo.email}</Link>
                         </div>
                         <div className="flex space-x-4 mt-6">
-                           <motion.a href="#" whileHover={{ scale: 1.2, color: "#F97316" }} className="text-xl"><IconLinkedin /></motion.a>
-                           <motion.a href="#" whileHover={{ scale: 1.2, color: "#F97316" }} className="text-xl"><IconTwitter /></motion.a>
-                           <motion.a href="#" whileHover={{ scale: 1.2, color: "#F97316" }} className="text-xl"><IconDribbble /></motion.a>
+                            {contactInfo.facebook && (
+                                <motion.a href={contactInfo.facebook} whileHover={{ scale: 1.2, color: "#F97316" }} className="text-xl"><Facebook /></motion.a>
+                            )}
+                            {contactInfo.instagram && (
+                                <motion.a href={contactInfo.instagram} whileHover={{ scale: 1.2, color: "#F97316" }} className="text-xl"><Instagram /></motion.a>
+                            )}
+                            {contactInfo.linkedin && (
+                                <motion.a href={contactInfo.linkedin} whileHover={{ scale: 1.2, color: "#F97316" }} className="text-xl"><Linkedin /></motion.a>
+                            )}
                         </div>
                     </div>
                 </div>
