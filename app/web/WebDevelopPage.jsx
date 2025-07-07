@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import Hero from '@/components/WebHero';
 import { websiteTypes } from '@/assets';
 import WebsiteTypeSection from './websiteTpyeSection'
+import { IconCloud } from '@/components/magicui/icon-cloud';
+import { cn } from "@/lib/utils";
+import { Marquee } from "@/components/magicui/marquee";
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -13,6 +16,52 @@ const IconDatabase = () => (<svg xmlns="http://www.w3.org/2000/svg" width="28" h
 const IconShoppingCart = () => (<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>);
 const IconLayers = () => (<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>);
 const IconCode = () => (<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>);
+
+const slugs = [
+  "typescript",
+  "javascript",
+  "dart",
+  "java",
+  "react",
+  "flutter",
+  "android",
+  "html5",
+  "css3",
+  "nodedotjs",
+  "express",
+  "nextdotjs",
+  "prisma",
+  "amazonaws",
+  "postgresql",
+  "firebase",
+  "nginx",
+  "vercel",
+  "testinglibrary",
+  "jest",
+  "cypress",
+  "docker",
+  "git",
+  "jira",
+  "github",
+  "gitlab",
+  "visualstudiocode",
+  "androidstudio",
+  "sonarqube",
+  "figma",
+];
+
+export function IconCloudDemo() {
+  const images = slugs.map(
+    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+  );
+
+  return (
+    <div className="relative flex size-full items-center justify-center overflow-hidden">
+      <IconCloud images={images} />
+    </div>
+  );
+}
+
 
 //================================================================//
 // WebDevelopmentPage Component
@@ -66,27 +115,6 @@ export default function WebDevelopmentPage() {
     return (
         <main className="bg-white pt-28">
             <Hero />
-            {/* Hero Section 
-            <section className="py-20 bg-gray-800 text-white" style={{backgroundImage: `radial-gradient(#ff5722 0.5px, transparent 0.5px), radial-gradient(#ff5722 0.5px, #1a202c 0.5px)`, backgroundSize: `20px 20px`, backgroundPosition: `0 0, 10px 10px`}}>
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <motion.h1 
-                        className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6}}
-                    >
-                        Engineering High-Performance Web Solutions
-                    </motion.h1>
-                    <motion.p 
-                        className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6, delay: 0.2}}
-                    >
-                        We architect and build robust, scalable, and secure web applications that power business growth and deliver exceptional user experiences.
-                    </motion.p>
-                </div>
-            </section>*/}
             
             {/* Our Services Section */}
             <section className="py-20 bg-gray-50">
@@ -125,24 +153,24 @@ export default function WebDevelopmentPage() {
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Technology Stack</h2>
                         <p className="text-lg text-gray-600 mt-2">Leveraging the best tools for the job.</p>
                     </div>
-                    <motion.div 
-                        className="flex flex-wrap justify-center items-center gap-4 md:gap-8"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        transition={{staggerChildren: 0.1}}
-                    >
-                        {techStack.map(tech => (
-                            <motion.div 
-                                key={tech}
-                                className="bg-gray-100 text-gray-700 font-medium py-3 px-6 rounded-lg shadow-sm"
-                                variants={{hidden: {opacity: 0, scale: 0.8}, visible: {opacity: 1, scale: 1}}}
-                            >
-                                {tech}
-                            </motion.div>
+                    
+                    <IconCloudDemo />
+                    
+                    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+                      <Marquee pauseOnHover className="[--duration:30s]">
+                        {slugs.map((slug, index) => (
+                          <div key={index} className="flex items-center justify-center bg-orange-100 text-orange-600 p-3 rounded-md">
+                            {slug}
+                          </div>
                         ))}
-                    </motion.div>
+                      </Marquee>
+                      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+                    </div>
+
                 </div>
+            </section>
+            <section>
             </section>
 
             {/* Featured Work Section */}
