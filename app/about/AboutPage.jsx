@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import Hero from '@/components/AboutHero';
-
+import CustomValueDisplay from './Values';
 // Main Hero Component
 const HeroOne = () => {
   return (
@@ -117,20 +117,6 @@ export default function AboutPage() {
             bio: "Maria's passion for design and user experience drives our creative engine, ensuring every project is both beautiful and intuitive.",
             img: "https://placehold.co/400x400/ff5722/ffffff?text=Maria",
             social: { linkedin: "#", twitter: "#" }
-        },
-        {
-            name: "David Chen",
-            role: "Senior Graphic Designer",
-            bio: "David is a master of visual storytelling, crafting compelling brand identities that capture hearts and minds.",
-            img: "https://placehold.co/400x400/1a202c/ffffff?text=David",
-            social: { linkedin: "#", twitter: "#" }
-        },
-        {
-            name: "Sarah Lee",
-            role: "Project Manager",
-            bio: "Sarah ensures every project runs smoothly from start to finish, fostering clear communication and delivering on time, every time.",
-            img: "https://placehold.co/400x400/ff5722/ffffff?text=Sarah",
-            social: { linkedin: "#", twitter: "#" }
         }
     ];
 
@@ -141,14 +127,14 @@ export default function AboutPage() {
             description: "We thrive on innovation, constantly exploring new technologies and creative approaches to solve complex challenges."
         },
         {
+            icon: <IconTarget />,
+            title: "Creativity",
+            description: "At our core, we are artists and storytellers, dedicated to crafting digital experiences that leave a lasting impact."
+        },
+        {
             icon: <IconHeart />,
             title: "Reliability",
             description: "Our commitment is to be a dependable partner. We deliver on our promises with transparency and integrity."
-        },
-        {
-            icon: <IconTarget />,
-            title: "Creativity",
-            description: "At our core, we are artists and storytellers, dedicated to crafting unique digital experiences that leave a lasting impact."
         },
     ];
 
@@ -168,28 +154,6 @@ export default function AboutPage() {
     return (
         <div className="bg-white pt-28">
             <Hero />
-            {/* About Hero Section 
-            <section className="py-20 bg-gray-50">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <motion.h1
-                        className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-gray-800"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6}}
-                    >
-                        The <span className="text-orange-500">People</span> Behind the Pixels
-                    </motion.h1>
-                    <motion.p
-                        className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6, delay: 0.2}}
-                    >
-                        We are a passionate team of developers, designers, and strategists dedicated to crafting exceptional digital products.
-                    </motion.p>
-                </div>
-            </section>*/}
-
             {/* Our Story Section */}
             <section className="py-20">
                  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -221,7 +185,7 @@ export default function AboutPage() {
             </section>
 
             {/* Our Core Values Section */}
-            <section className="py-20 bg-gray-50">
+            <section className="py-20 bg-gray-50 md:hidden">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                      <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Core Values</h2>
@@ -245,6 +209,21 @@ export default function AboutPage() {
                         ))}
                     </motion.div>
                 </div>
+            </section>
+
+            <section className="py-20 p-2 bg-white space-y-8 md:flex hidden flex-col justify-around items-center">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Core Values</h2>
+                        <p className="text-lg text-gray-600 mt-2">The principles that guide everything we do.</p>
+                    </div>
+                {values.map((value, index) => (
+                    <CustomValueDisplay
+                        key={index}
+                        title={value.title}
+                        description={value.description}
+                        icon={value.icon}
+                    />
+                ))}
             </section>
 
             {/* Meet the Team Section */}

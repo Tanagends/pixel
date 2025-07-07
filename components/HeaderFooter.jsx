@@ -304,5 +304,4 @@ const Footer = () => {
     );
 };
 
-
 export { Header, Footer };
