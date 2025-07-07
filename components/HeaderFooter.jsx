@@ -82,6 +82,18 @@ const Logo = () => {
 
   return (
     <div className="flex items-center space-x-2 cursor-pointer">
+    <motion.img className=""
+        src="/logo.svg"
+        width="32" 
+        height="32" 
+        viewBox="0 0 32 32" 
+        fill="none" 
+        variants={svgVariants}
+        initial="hidden"
+        animate="visible"
+    >
+    </motion.img>
+    {/* 
       <motion.svg 
         width="32" 
         height="32" 
@@ -97,10 +109,10 @@ const Logo = () => {
         <path d="M12 32H10C6.68629 32 4 29.3137 4 26V20H0V24C0 28.4183 3.58172 32 8 32H12V32Z" fill="#1a202c"/>
         <path d="M20 32H24C28.4183 32 32 28.4183 32 24V20H28V26C28 29.3137 25.3137 32 22 32H20V32Z" fill="#FF5722"/>
         <rect x="8" y="8" width="16" height="16" rx="2" fill="#1a202c"/>
-      </motion.svg>
+      </motion.svg> */}
       <span className="text-2xl font-extrabold tracking-tight">
         <span className="text-gray-800">Pixel</span>
-        <span className="text-orange-500">Crafte</span>
+        <span className="text-orange-400">Crafte</span>
       </span>
     </div>
   );
