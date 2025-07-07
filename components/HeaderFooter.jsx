@@ -1,9 +1,20 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { motion, AnimatePresence } from 'framer-motion';
 import {contactInfo } from '@/assets'
 import { Phone, Instagram, Facebook, Linkedin } from 'lucide-react';
 import Link from 'next/link';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
+
+
 //================================================================//
 // 0. INLINE SVG ICONS
 // I've replaced the 'react-icons' library with inline SVGs to resolve the compilation error.
@@ -118,6 +129,29 @@ const Logo = () => {
   );
 };
 
+
+//-----------------------------------------------------------------//
+// Menubar / Topbar Component
+//-----------------------------------------------------------------//
+
+const Menubar = () => {
+    return (
+        <Sheet>
+          <SheetTrigger>
+                   <IconMobileMenu className="lg:hidden text-gray-700 focus:outline-none" />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Are you absolutely sure?</SheetTitle>
+              <SheetDescription>
+                This action cannot be undone. This will permanently delete your account
+                and remove your data from our servers.
+              </SheetDescription>
+            </SheetHeader>
+          </SheetContent>
+        </Sheet>
+    )
+}
 
 //----------------------------------------------------------------//
 // Header Component
@@ -240,11 +274,7 @@ const Header = () => {
                                 Get a Free Quote
                             </motion.button>
                         </div>
-                        <div className="lg:hidden">
-                            <button className="text-gray-700 focus:outline-none">
-                               <IconMobileMenu />
-                            </button>
-                        </div>
+                        <Menubar />
                     </div>
                 </div>
             </nav>
