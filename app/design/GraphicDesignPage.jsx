@@ -4,6 +4,9 @@ import { motion } from 'framer-motion';
 import Hero from '@/components/DesignHero';
 import GraphicDesignSection from './GraphicDesignsSection';
 import { graphicDesigns } from '@/assets';
+import { Marquee } from "@/components/magicui/marquee";
+import { Pen, PenLineIcon } from 'lucide-react';
+
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -93,21 +96,26 @@ export default function GraphicDesignPage() {
                         <p className="text-lg text-gray-600 mt-2">Masters of the industry-standard design software.</p>
                     </div>
                     <motion.div 
-                        className="flex flex-wrap justify-center items-center gap-4 md:gap-8"
+                        className=""
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{staggerChildren: 0.1}}
                     >
-                        {creativeToolkit.map(tool => (
-                            <motion.div 
-                                key={tool}
-                                className="border border-gray-200 text-gray-700 font-medium py-3 px-6 rounded-lg"
-                                variants={{hidden: {opacity: 0, scale: 0.8}, visible: {opacity: 1, scale: 1}}}
-                            >
-                                {tool}
-                            </motion.div>
-                        ))}
+                            <Marquee>
+                            {creativeToolkit.map(tool => (
+                                <motion.div 
+                                    key={tool}
+                                    className="border border-orange-600 text-orange-600 font-medium py-3 px-6 rounded-lg"
+                                    variants={{hidden: {opacity: 0, scale: 0.8}, visible: {opacity: 1, scale: 1}}}
+                                >
+                                    <PenLineIcon className="inline-block mr-2" />
+                                    {tool}
+                                </motion.div>
+                                ))}
+                            </Marquee>
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
                     </motion.div>
                 </div>
             </section>
