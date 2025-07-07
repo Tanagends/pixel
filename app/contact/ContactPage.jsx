@@ -2,7 +2,7 @@
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import Hero from '@/components/ContactHero';
-
+import Subscribe from './Subscribe';
 // Main Hero Component
 const HeroTwo = () => {
   const words = ["Build", "Innovate", "Launch"];
@@ -178,33 +178,12 @@ export default function ContactPage() {
     ];
 
     return (
-        <div className="bg-white pt-28">
-            {/* Contact Hero Section
-            <section className="py-20 bg-gray-50">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <motion.h1 
-                        className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-gray-800"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6}}
-                    >
-                        Let's <span className="text-orange-500">Connect</span>
-                    </motion.h1>
-                    <motion.p 
-                        className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6, delay: 0.2}}
-                    >
-                        Have a question or a project in mind? We'd love to hear from you. Fill out the form below or reach out to us directly.
-                    </motion.p>
-                </div>
-            </section> */}
-            
+        <div className="bg-white pt-28">            
             <Hero />
+
             {/* Contact Form & Details Section */}
             <section className="py-20">
-                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-16">
                     <div className="grid lg:grid-cols-3 gap-12">
                         {/* Column 1: Contact Details */}
                         <motion.div
@@ -282,7 +261,8 @@ export default function ContactPage() {
                     </div>
                 </div>
             </section>
-            
+
+            <Subscribe />
             {/* Map Section */}
             <section className="bg-gray-50">
                 <motion.div 

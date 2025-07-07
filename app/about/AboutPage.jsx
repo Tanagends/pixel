@@ -234,7 +234,7 @@ export default function AboutPage() {
                         <p className="text-lg text-gray-600 mt-2">The creative minds behind your success.</p>
                     </div>
                      <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-8"
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"

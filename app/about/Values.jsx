@@ -67,13 +67,13 @@ const CustomValueDisplay = ({
     >
       {/* Main rectangular body - rounded on the left, straight on the right */}
       <motion.div
-        className={`flex items-center md:h-16 h-12 pl-8 pr-6 rounded-l-full bg-gray-200`}
+        className={`flex items-center md:h-16 h-12 pl-8 pr-6 rounded-l-full bg-orange-100 border border-orange-600`}
         style={{ minWidth: '120px' }} // Ensure enough width for the content and shape
         variants={rectangleVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        <motion.div className="text-black font-light text-[10px] md:text-sm z-10">
+        <motion.div className="text-orange-600 text-[10px] md:text-sm z-10">
           {description}
         </motion.div>
       </motion.div>
@@ -89,7 +89,7 @@ const CustomValueDisplay = ({
         animate={inView ? "visible" : "hidden"}
       >
 
-        <p>{title}</p>
+        <p className='text-white'>{title}</p>
         {/* Small Dot - positioned on top of the large circle */}
         <motion.div
           className={`absolute w-12 h-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center`}
