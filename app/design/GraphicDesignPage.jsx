@@ -91,7 +91,7 @@ export default function GraphicDesignPage() {
              {/* Creative Toolkit Section */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                     <div className="text-center mb-12">
+                    <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Creative Toolkit</h2>
                         <p className="text-lg text-gray-600 mt-2">Masters of the industry-standard design software.</p>
                     </div>
@@ -114,7 +114,7 @@ export default function GraphicDesignPage() {
                                 </motion.div>
                                 ))}
                             </Marquee>
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+                      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
                       <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
                     </motion.div>
                 </div>

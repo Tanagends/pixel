@@ -2,6 +2,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '@/components/WorkerHero';
+import { AnimatedListSection } from './AnimatedList';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -74,30 +75,10 @@ export default function WorkPage() {
     
     return (
         <div className="bg-gray-50 pt-28">
-            {/* Work Hero Section 
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <motion.h1 
-                        className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-gray-800"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6}}
-                    >
-                        Our <span className="text-orange-500">Digital Showcase</span>
-                    </motion.h1>
-                    <motion.p 
-                        className="max-w-3xl mx-auto text-lg md:text-xl text-gray-600"
-                        initial={{y: 20, opacity: 0}}
-                        animate={{y: 0, opacity: 1}}
-                        transition={{duration: 0.6, delay: 0.2}}
-                    >
-                        A curated collection of projects where creativity, technology, and strategy intersect. Explore the results of our passion and partnership.
-                    </motion.p>
-                </div>
-            </section>*/}
             <Hero />
-            
+
             {/* Main Content Section */}
+            
             <section className="py-20">
                  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Filter Buttons */}
@@ -162,6 +143,17 @@ export default function WorkPage() {
                         </AnimatePresence>
                     </motion.div>
                  </div>
+            </section>
+
+                        {/* Animated List */}
+            <section className="py-20 bg-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">We only have happy clients</h2>
+                        <p className="text-lg text-gray-600 mt-2">A showcase of the results our clients are getting</p>
+                    </div>
+                <AnimatedListSection />
+                </div>
             </section>
 
              {/* CTA Section */}
