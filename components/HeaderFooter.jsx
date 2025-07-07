@@ -11,6 +11,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetFooter
 } from "@/components/ui/sheet"
 
 
@@ -134,24 +135,6 @@ const Logo = () => {
 // Menubar / Topbar Component
 //-----------------------------------------------------------------//
 
-const Menubar = () => {
-    return (
-        <Sheet>
-          <SheetTrigger>
-                   <IconMobileMenu className="lg:hidden text-gray-700 focus:outline-none" />
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Are you absolutely sure?</SheetTitle>
-              <SheetDescription>
-                This action cannot be undone. This will permanently delete your account
-                and remove your data from our servers.
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
-    )
-}
 
 //----------------------------------------------------------------//
 // Header Component
@@ -182,6 +165,56 @@ const Header = () => {
         hover: { scale: 1.05, boxShadow: "0px 10px 20px rgba(255, 87, 34, 0.25)" },
         tap: { scale: 0.98 }
     };
+
+    // Menubar
+    const Menubar = () => {
+    return (
+        <Sheet>
+          <SheetTrigger className="lg:hidden">
+                   <IconMobileMenu className="lg:hidden text-gray-700 focus:outline-none" />
+          </SheetTrigger>
+          <SheetContent side="top">
+            <SheetHeader>
+              <SheetTitle><Logo /></SheetTitle>
+                        <div className="flex items-center space-x-8">
+                            <ul className="flex items-center space-x-8 font-medium text-gray-600">
+                                <li className="relative">                                                                                                            
+                                    <motion.a href={'/'} variants={navItemVariants} whileHover="hover" whileTap="tap">Home</motion.a> 
+                                </li>
+                                <li className="relative text-center">                                                                                                            
+                                    <motion.a href={'/web'} variants={navItemVariants} whileHover="hover" whileTap="tap">Website Development</motion.a> 
+                                </li>
+                                <li className="relative text-center">                                                                                                            
+                                    <motion.a href={'/design'} variants={navItemVariants} whileHover="hover" whileTap="tap">Graphic Design</motion.a> 
+                                </li>
+                                {['Work', 'About', 'Blog', 'Contact'].map((item) => (
+                                    <li key={item} className="relative">
+                                        <motion.a href={`/${item.toLowerCase()}`} variants={navItemVariants} whileHover="hover" whileTap="tap">{item}</motion.a>
+                                        <motion.div
+                                          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-orange-500 w-full"
+                                          variants={underlineVariants}
+                                          initial="hidden"
+                                          whileHover="visible"
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+            </SheetHeader>
+            <SheetFooter className="">
+                <motion.button 
+                        className="bg-orange-500 text-white font-bold py-3 px-6 rounded-lg text-sm"
+                        variants={ctaButtonVariants}
+                        whileHover="hover"
+                        whileTap="tap"
+                    >
+                        Get a Free Quote
+                </motion.button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+    )
+}
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
