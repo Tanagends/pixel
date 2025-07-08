@@ -26,7 +26,20 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { toast } from 'sonner'; 
+import { Textarea } from './ui/textarea';
+import { toast } from 'sonner';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Label } from "@/components/ui/label"
+import { Button } from '@/components/ui/button';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -177,6 +190,135 @@ const Header = () => {
         tap: { scale: 0.98 }
     };
 
+    // get free quote dialog
+    const GetFreeQuote = () => {
+        const [isDialogOpen, setIsDialogOpen] = useState(false);
+        const formSchema = z.object({
+            email: z.string().email("Invalid email address").nonempty("Email is required"),
+            phone: z.string().optional(),
+            serviceDescription: z.string().min(10, "Service description must be at least 10 characters long").nonempty("Service description is required"),
+        });
+        const form = useForm({
+            resolver: zodResolver(formSchema),
+            defaultValues: {
+                email: '',
+                phone: '',
+                serviceDescription: ''
+            }
+        });
+        const onSubmit = async (data) => {
+            try {
+                const response = await fetch('/api/get-quote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to send quote request');
+                }
+                const result = await response.json();
+                toast.success(result.message || "Quote request sent successfully!");
+            setIsDialogOpen(false);
+            form.reset(); // Reset form fields after successful submission
+        } catch (error) {
+            console.error("Error sending quote request:", error);
+            toast.error(error.message || "Failed to send quote request");
+        }
+    };
+        return (
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                    <motion.button 
+                            className="bg-orange-500 text-white font-bold py-3 px-6 rounded-lg text-sm"
+                            variants={ctaButtonVariants}
+                            whileHover="hover"
+                            whileTap="tap"
+                        >
+                            Get a Free Quote
+                    </motion.button>                        
+                </DialogTrigger>
+                <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Get a Free Quote</DialogTitle>
+                    <DialogDescription>
+                        Please fill out the form below to receive a free quote for our services.
+                    </DialogDescription>
+                </DialogHeader>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)}>
+        {/* Email Field */}
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email Address</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="your@example.com"
+                  type="email"
+                  className="rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-red-400 text-xs mt-1" />
+            </FormItem>
+          )}
+        />
+
+        {/* Phone Field */}
+        <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="+1 (555) 123-4567"
+                  type="tel" // Use type="tel" for phone numbers
+                  className=" rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-red-400 text-xs mt-1" />
+            </FormItem>
+          )}
+        />
+
+        {/* Message Field */}
+        <FormField
+          control={form.control}
+          name="serviceDescription"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Service Description</FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Type your service description here..."
+                  className="rounded-md px-4 py-2 h-32 resize-y focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage className="text-red-400 text-xs mt-1" />
+            </FormItem>
+          )}
+        />           <DialogFooter className="pt-3">
+                        <DialogClose asChild>
+                            <Button className="bg-red-500 text-white">Cancel</Button>
+                        </DialogClose>
+                        <Button type="submit">Get Quote</Button>
+                        </DialogFooter>
+                    </form>
+                    {/* Error Message */}
+                </Form>
+                </DialogContent>
+            </Dialog>
+        )
+    }
+
     // Menubar
     const Menubar = () => {
     return (
@@ -213,14 +355,16 @@ const Header = () => {
                         </div>
             </SheetHeader>
             <SheetFooter className="">
-                <motion.button 
+                {/* <motion.button 
                         className="bg-orange-500 text-white font-bold py-3 px-6 rounded-lg text-sm"
                         variants={ctaButtonVariants}
                         whileHover="hover"
                         whileTap="tap"
                     >
                         Get a Free Quote
-                </motion.button>
+                </motion.button> */}
+
+                <GetFreeQuote />
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -309,14 +453,15 @@ const Header = () => {
                                     </li>
                                 ))}
                             </ul>
-                            <motion.button 
+                            {/* <motion.button 
                                 className="bg-orange-500 text-white font-bold py-3 px-6 rounded-lg text-sm"
                                 variants={ctaButtonVariants}
                                 whileHover="hover"
                                 whileTap="tap"
                             >
                                 Get a Free Quote
-                            </motion.button>
+                            </motion.button> */}
+                            <GetFreeQuote />
                         </div>
                         <Menubar />
                     </div>
