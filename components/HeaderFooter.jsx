@@ -14,7 +14,11 @@ import {
   SheetFooter
 } from "@/components/ui/sheet"
 
+const navlinks = [
+    {
 
+    }
+]
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -93,7 +97,7 @@ const Logo = ({className}) => {
   };
 
   return (
-    <div className="flex items-center space-x-2 cursor-pointer">
+    <Link className="flex items-center space-x-2 cursor-pointer" href="/">
     <motion.img className=""
         src="/logo.svg"
         width="32" 
@@ -105,30 +109,30 @@ const Logo = ({className}) => {
         animate="visible"
     >
     </motion.img>
-    {/* 
-      <motion.svg 
-        width="32" 
-        height="32" 
-        viewBox="0 0 32 32" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-        variants={svgVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <path d="M12 0H8C3.58172 0 0 3.58172 0 8V12H4C4 8.68629 6.68629 6 10 6H12V0Z" fill="#FF5722"/>
-        <path d="M20 0H24C28.4183 0 32 3.58172 32 8V12H28C28 8.68629 25.3137 6 22 6H20V0Z" fill="#1a202c"/>
-        <path d="M12 32H10C6.68629 32 4 29.3137 4 26V20H0V24C0 28.4183 3.58172 32 8 32H12V32Z" fill="#1a202c"/>
-        <path d="M20 32H24C28.4183 32 32 28.4183 32 24V20H28V26C28 29.3137 25.3137 32 22 32H20V32Z" fill="#FF5722"/>
-        <rect x="8" y="8" width="16" height="16" rx="2" fill="#1a202c"/>
-      </motion.svg> */}
       <span className="text-2xl font-extrabold tracking-tight">
         <span className={className}>Pixel</span> <span className="text-orange-400">Crafte</span>
       </span>
-    </div>
+    </Link>
   );
 };
 
+{/* 
+  <motion.svg 
+    width="32" 
+    height="32" 
+    viewBox="0 0 32 32" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+    variants={svgVariants}
+    initial="hidden"
+    animate="visible"
+  >
+    <path d="M12 0H8C3.58172 0 0 3.58172 0 8V12H4C4 8.68629 6.68629 6 10 6H12V0Z" fill="#FF5722"/>
+    <path d="M20 0H24C28.4183 0 32 3.58172 32 8V12H28C28 8.68629 25.3137 6 22 6H20V0Z" fill="#1a202c"/>
+    <path d="M12 32H10C6.68629 32 4 29.3137 4 26V20H0V24C0 28.4183 3.58172 32 8 32H12V32Z" fill="#1a202c"/>
+    <path d="M20 32H24C28.4183 32 32 28.4183 32 24V20H28V26C28 29.3137 25.3137 32 22 32H20V32Z" fill="#FF5722"/>
+    <rect x="8" y="8" width="16" height="16" rx="2" fill="#1a202c"/>
+  </motion.svg> */}
 
 //-----------------------------------------------------------------//
 // Menubar / Topbar Component
@@ -181,10 +185,10 @@ const Header = () => {
                                     <motion.a href={'/'} variants={navItemVariants} whileHover="hover" whileTap="tap">Home</motion.a> 
                                 </li>
                                 <li className="relative text-center">                                                                                                            
-                                    <motion.a href={'/web'} variants={navItemVariants} whileHover="hover" whileTap="tap">Website Development</motion.a> 
+                                    <motion.a href={'/website-development'} variants={navItemVariants} whileHover="hover" whileTap="tap">Website Development</motion.a> 
                                 </li>
                                 <li className="relative text-center">                                                                                                            
-                                    <motion.a href={'/design'} variants={navItemVariants} whileHover="hover" whileTap="tap">Graphic Design</motion.a> 
+                                    <motion.a href={'/graphic-design'} variants={navItemVariants} whileHover="hover" whileTap="tap">Graphic Design</motion.a> 
                                 </li>
                                 {['Work', 'About', 'Blog', 'Contact'].map((item) => (
                                     <li key={item} className="relative">
@@ -343,8 +347,8 @@ const Footer = () => {
                     <div className="lg:justify-self-center">
                         <h3 className="text-lg font-bold text-orange-500 mb-4">Navigate</h3>
                         <ul className="space-y-3 text-gray-300">
-                            {['Web', 'Design', 'Work', 'About', 'Blog', 'Contact'].map(item => (
-                                <li key={item}><motion.a href="#" className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">{item}</motion.a></li>
+                            {['website-develop', 'graphic-design', 'work', 'about', 'blog', 'contact'].map(item => (
+                                <li key={item}><motion.a href={`/${item.toLowerCase()}`} className="hover:text-orange-500 transition-colors duration-300" variants={linkHoverVariant} whileHover="hover">{item}</motion.a></li>
                             ))}
                         </ul>
                     </div>
