@@ -193,6 +193,7 @@ const Header = () => {
     // get free quote dialog
     const GetFreeQuote = () => {
         const [isDialogOpen, setIsDialogOpen] = useState(false);
+        const [isSubmitting, setIsSubmitting] = useState(false);
         const formSchema = z.object({
             email: z.string().email("Invalid email address").nonempty("Email is required"),
             phone: z.string().optional(),
@@ -207,6 +208,7 @@ const Header = () => {
             }
         });
         const onSubmit = async (data) => {
+            setIsSubmitting(true);
             try {
                 const response = await fetch('/api/get-quote', {
                     method: 'POST',
@@ -216,17 +218,20 @@ const Header = () => {
                     body: JSON.stringify(data),
                 });
                 if (!response.ok) {
-                    throw new Error('Failed to send quote request');
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to send quote request');
                 }
                 const result = await response.json();
                 toast.success(result.message || "Quote request sent successfully!");
-            setIsDialogOpen(false);
-            form.reset(); // Reset form fields after successful submission
-        } catch (error) {
-            console.error("Error sending quote request:", error);
-            toast.error(error.message || "Failed to send quote request");
-        }
-    };
+                setIsDialogOpen(false);
+                form.reset(); // Reset form fields after successful submission
+            } catch (error) {
+                console.error("Error sending quote request:", error);
+                toast.error(error.message || "Failed to send quote request");
+            } finally {
+                setIsSubmitting(false);
+            }
+        };
         return (
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
@@ -247,7 +252,7 @@ const Header = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {/* Email Field */}
         <FormField
           control={form.control}
@@ -307,9 +312,18 @@ const Header = () => {
           )}
         />           <DialogFooter className="pt-3">
                         <DialogClose asChild>
-                            <Button className="bg-red-500 text-white">Cancel</Button>
+                            <Button type="button" variant="secondary" disabled={isSubmitting}>Cancel</Button>
                         </DialogClose>
-                        <Button type="submit">Get Quote</Button>
+                        <Button type="submit" disabled={isSubmitting} className="bg-orange-500 hover:bg-orange-600 text-white disabled:bg-orange-400">
+                            {isSubmitting ? (
+                                <>
+                                    <LoaderCircle className="animate-spin mr-2" size={16} />
+                                    Sending...
+                                </>
+                            ) : (
+                                'Get Quote'
+                            )}
+                        </Button>
                         </DialogFooter>
                     </form>
                     {/* Error Message */}
