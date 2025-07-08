@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
           toastOptions={{
             duration: 3000,
           }}
+          richColors
         />
       </body>
     </html>
