@@ -3,6 +3,11 @@ import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
 import Hero from '@/components/ContactHero';
 import Subscribe from './Subscribe';
+import ContactForm from './ContactForm';
+
+
+
+
 // Main Hero Component
 const HeroTwo = () => {
   const words = ["Build", "Innovate", "Launch"];
@@ -167,6 +172,9 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
 //================================================================//
 // ContactPage Component - This is the new page content.
 //================================================================//
+
+
+
 export default function ContactPage() {
     
     const [openFaq, setOpenFaq] = useState(null);
@@ -220,44 +228,7 @@ export default function ContactPage() {
                         </motion.div>
                         
                         {/* Column 2: Contact Form */}
-                        <motion.div
-                            className="lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-lg"
-                            initial={{x: 50, opacity: 0}}
-                            whileInView={{x: 0, opacity: 1}}
-                            viewport={{ once: true, amount: 0.5 }}
-                            transition={{duration: 0.8, ease: 'easeOut'}}
-                        >
-                             <form className="space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                        <input type="text" name="name" id="name" className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm" />
-                                    </div>
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                        <input type="email" name="email" id="email" className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm" />
-                                    </div>
-                                </div>
-                                 <div>
-                                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                                    <input type="text" name="subject" id="subject" className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm" />
-                                </div>
-                                <div>
-                                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                     <textarea id="message" name="message" rows="5" className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm"></textarea>
-                                </div>
-                                <div>
-                                    <motion.button 
-                                        type="submit"
-                                        className="w-full bg-orange-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg"
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                    >
-                                        Send Message
-                                    </motion.button>
-                                </div>
-                             </form>
-                        </motion.div>
+                        <ContactForm />
                     </div>
                 </div>
             </section>
