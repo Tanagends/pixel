@@ -10,18 +10,18 @@ const AnimatedWireframe = () => {
   // A simple representation. Replace with your actual animated SVG.
   return (
     <svg viewBox="0 0 400 300" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <motion.rect
-        x="20" y="20" width="360" height="260" rx="12"
-        stroke="rgba(255, 255, 255, 0.2)"
+      <motion.rect 
+        x="20" y="20" width="360" height="260" rx="12" 
+        stroke="rgba(255, 255, 255, 0.2)" 
         strokeWidth="2"
       />
-      <motion.path
-        d="M 20 80 H 400"
-        stroke="rgba(255, 255, 255, 0.2)"
-        strokeWidth="2"
+      <motion.path 
+        d="M 20 80 H 400" 
+        stroke="rgba(255, 255, 255, 0.2)" 
+        strokeWidth="2" 
       />
       <motion.rect x="40" y="40" width="80" height="20" rx="4" fill="rgba(255, 193, 7, 0.5)" />
-
+      
       {/* Example of an animated path */}
       <motion.path
         d="M50 120 C 100 120, 100 180, 150 180 S 200 120, 250 120"
@@ -48,20 +48,11 @@ const AnimatedWireframe = () => {
 
 const ArchitectCtaSection = () => {
   return (
-    <section className="relative text-gray-300"> {/* Set section to relative */}
-      {/* Background Image & Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center z-0"
-        style={{ backgroundImage: "url('images/bcta.jpeg')" }}
-      />
-      {/* Overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-[#111827]/80 z-0" />
-
-      {/* Content Container */}
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 z-10">
+    <section className="bg-[#111827] text-gray-300"> {/* Dark background */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-
-          {/* --- Text & Button Column (Unchanged) --- */}
+          
+          {/* --- Text & Button Column --- */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +65,7 @@ const ArchitectCtaSection = () => {
             <p className="text-lg text-gray-400 mb-10 max-w-lg">
               We move beyond templates. Our process involves deep collaboration to build a bespoke digital foundation that is robust, scalable, and engineered for success.
             </p>
-
+            
             <motion.button
               className="inline-flex items-center px-8 py-3 text-base font-semibold text-white transition-colors bg-transparent border-2 border-amber-500 rounded-full group hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-amber-500"
               whileHover={{ scale: 1.05 }}
@@ -85,7 +76,7 @@ const ArchitectCtaSection = () => {
             </motion.button>
           </motion.div>
 
-          {/* --- Animated Visual Column (Unchanged) --- */}
+          {/* --- Animated Visual Column --- */}
           <motion.div
             className="w-full h-80 lg:h-96"
             initial={{ opacity: 0, scale: 0.9 }}

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 
 //================================================================//
 // INLINE SVG ICONS
-// Self-contained icons for the promotion cards.
 //================================================================//
 const IconMortarBoard = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 4 3 6 3s6-1.34 6-3v-5"/></svg>
@@ -19,30 +18,91 @@ const IconArrowRight = () => (
 
 
 //================================================================//
-// PromotionSection Component
+// NEW: Reusable PromoCard Component
+// Features a 3D tilt and interactive spotlight hover effect.
+//================================================================//
+const PromoCard = ({ icon, category, title, description, buttonText, isDarkMode = false }) => {
+    
+    // Animate the card itself
+    const cardVariant = {
+        hidden: { opacity: 0, y: 50, scale: 0.95 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.6, ease: 'easeOut' },
+        },
+    };
+
+    // Handle the spotlight effect on pointer move
+    const handleMouseMove = (e) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+    };
+
+    // Dynamic classes for light and dark modes
+    const baseClasses = "group relative rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-out";
+    const modeClasses = isDarkMode 
+        ? "bg-gray-800 text-white border-gray-700 hover:border-orange-500/50" 
+        : "bg-white text-gray-800 border-gray-200 hover:border-orange-500/50";
+    
+    // Dynamic spotlight colors
+    const spotlightClasses = isDarkMode
+        ? "before:bg-[radial-gradient(400px_at_var(--x)_var(--y),rgba(255,255,255,0.08),transparent_40%)]"
+        : "before:bg-[radial-gradient(400px_at_var(--x)_var(--y),rgba(0,0,0,0.05),transparent_40%)]";
+
+    return (
+        <motion.div
+            variants={cardVariant}
+            className={`${baseClasses} ${modeClasses} border`}
+            onMouseMove={handleMouseMove}
+            style={{ transformStyle: "preserve-3d" }}
+        >
+            {/* Spotlight Effect */}
+            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${spotlightClasses} before:absolute before:inset-0`} />
+
+            {/* Card Content with 3D Tilt */}
+            <motion.div 
+                className="relative p-8 md:p-10"
+                style={{ transform: "translateZ(20px)" }}
+                whileHover={{
+                    scale: 1.02,
+                    transition: { duration: 0.3 }
+                }}
+            >
+                <div className={`absolute top-6 right-6 p-3 rounded-full transition-transform duration-300 ease-out group-hover:scale-110 ${isDarkMode ? 'bg-white/10 text-white' : 'bg-orange-100 text-orange-500'}`}>
+                    {icon}
+                </div>
+                <span className={`font-bold ${isDarkMode ? 'text-orange-400' : 'text-orange-500'}`}>{category}</span>
+                <h3 className="text-3xl font-bold mt-2 mb-4">{title}</h3>
+                <p className={`mb-6 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>{description}</p>
+                <motion.button 
+                    className={`inline-flex items-center space-x-2 font-bold py-3 px-6 rounded-lg transition-colors duration-300 ${isDarkMode ? 'bg-orange-500 text-white hover:bg-orange-600' : 'bg-gray-100 text-gray-800 group-hover:bg-orange-500 group-hover:text-white'}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <span>{buttonText}</span>
+                    <IconArrowRight />
+                </motion.button>
+            </motion.div>
+        </motion.div>
+    );
+};
+
+
+//================================================================//
+// Main PromotionSection Component
 //================================================================//
 export default function PromotionSection() {
-
     const containerVariant = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.3,
-                delayChildren: 0.2,
-            },
-        },
-    };
-
-    const cardVariant = {
-        hidden: { opacity: 0, y: 50 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.8,
-                ease: 'easeOut',
-            },
+            transition: { staggerChildren: 0.2, delayChildren: 0.2 },
         },
     };
 
@@ -64,57 +124,25 @@ export default function PromotionSection() {
                     viewport={{ once: true, amount: 0.3 }}
                 >
                     {/* Card 1: Educational Websites */}
-                    <motion.div 
-                        className="bg-white rounded-xl shadow-lg overflow-hidden group"
-                        variants={cardVariant}
-                    >
-                        <div className="p-8 md:p-10 relative">
-                             <div className="absolute top-6 right-6 bg-orange-100 text-orange-500 rounded-full p-3">
-                                <IconMortarBoard />
-                            </div>
-                            <span className="text-orange-500 font-bold">FOR SCHOOLS & COLLEGES</span>
-                            <h3 className="text-3xl font-bold text-gray-800 mt-2 mb-4">Empower Your Institution</h3>
-                            <p className="text-gray-600 mb-6">
-                                Get a modern, professional, and easy-to-manage website for your high school or college. We're offering special discounts to help educational institutions shine online.
-                            </p>
-                            <motion.button 
-                                className="inline-flex items-center space-x-2 font-bold text-gray-800 bg-gray-100 py-3 px-6 rounded-lg group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <span>Claim School Discount</span>
-                                <IconArrowRight />
-                            </motion.button>
-                        </div>
-                    </motion.div>
+                    <PromoCard
+                        icon={<IconMortarBoard />}
+                        category="FOR SCHOOLS & COLLEGES"
+                        title="Empower Your Institution"
+                        description="Get a modern, professional, and easy-to-manage website for your high school or college. We're offering special discounts to help educational institutions shine online."
+                        buttonText="Claim School Discount"
+                    />
 
                     {/* Card 2: IT & Software Solutions */}
-                    <motion.div 
-                        className="bg-gray-800 text-white rounded-xl shadow-lg overflow-hidden group"
-                        variants={cardVariant}
-                    >
-                        <div className="p-8 md:p-10 relative">
-                             <div className="absolute top-6 right-6 bg-white/10 text-white rounded-full p-3">
-                                <IconBriefcase />
-                            </div>
-                            <span className="text-orange-400 font-bold">FOR BUSINESSES</span>
-                            <h3 className="text-3xl font-bold mt-2 mb-4">Streamline Your Operations</h3>
-                            <p className="text-gray-300 mb-6">
-                                Upgrade your business infrastructure with our IT consultancy packages. Get discounted rates on corporate email setup, cloud solutions, and bespoke software development.
-                            </p>
-                            <motion.button 
-                                className="inline-flex items-center space-x-2 font-bold text-white bg-orange-500 py-3 px-6 rounded-lg hover:bg-orange-600 transition-colors duration-300"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <span>Explore IT Packages</span>
-                                <IconArrowRight />
-                            </motion.button>
-                        </div>
-                    </motion.div>
+                    <PromoCard
+                        icon={<IconBriefcase />}
+                        category="FOR BUSINESSES"
+                        title="Streamline Your Operations"
+                        description="Upgrade your business infrastructure with our IT consultancy packages. Get discounted rates on corporate email setup, cloud solutions, and bespoke software development."
+                        buttonText="Explore IT Packages"
+                        isDarkMode={true}
+                    />
                 </motion.div>
             </div>
         </section>
     );
 };
-

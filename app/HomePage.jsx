@@ -216,91 +216,11 @@ const HomePage = () => {
                 </div>
             </motion.section> */}
 
-            {/* Services Section 
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div 
-                        className="text-center mb-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Services</h2>
-                        <p className="text-lg text-gray-600 mt-2">Crafting solutions for your digital needs.</p>
-                    </motion.div>
-                    <motion.div 
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.3 }}
-                    >
-                        <motion.div className="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300" variants={itemVariants}>
-                            <div className="text-orange-500 mb-4"><IconCode /></div>
-                            <h3 className="text-2xl font-bold text-gray-800 mb-2">Web Development</h3>
-                            <p className="text-gray-600 mb-4">From lightning-fast landing pages to complex web applications, we build robust, scalable, and secure websites that drive results.</p>
-                            <a href="#" className="font-bold text-orange-500 hover:underline flex items-center space-x-2">Learn More <IconArrowRight/></a>
-                        </motion.div>
-                         <motion.div className="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-300" variants={itemVariants}>
-                            <div className="text-orange-500 mb-4"><IconPenTool /></div>
-                            <h3 className="text-2xl font-bold text-gray-800 mb-2">Graphic Design</h3>
-                            <p className="text-gray-600 mb-4">We create compelling visual identities, from logos and branding to marketing materials, that tell your story and captivate your audience.</p>
-                            <a href="#" className="font-bold text-orange-500 hover:underline flex items-center space-x-2">See Our Style <IconArrowRight/></a>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section> */}
             <Services /> 
 
             <Promotion />
 
-            {/* Featured Work - Bento Grid *
-            <section className="py-20 bg-gray-50">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div 
-                        className="text-center mb-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Featured Work</h2>
-                        <p className="text-lg text-gray-600 mt-2">Pixels perfected, stories told.</p>
-                    </motion.div>
-                    <motion.div 
-                        className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                    >
-                        {projects.map((project, index) => (
-                            <motion.div 
-                                key={index} 
-                                className={`rounded-xl overflow-hidden group relative
-                                    ${index === 1 || index === 3 ? 'md:row-span-2' : ''}
-                                    ${index === 0 || index === 3 ? 'md:col-span-2' : ''}`}
-                                variants={itemVariants}
-                            >
-                                <img src={project.img} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/60 transition-colors duration-300 flex items-end p-4">
-                                    <div className="text-white">
-                                        <h3 className="font-bold text-lg">{project.title}</h3>
-                                        <p className="text-sm opacity-80">{project.category}</p>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>*/}
-                {/* Featured Work - Bento Grid */}
-
-            {/* Featured Work - Bento Grid */}
-          
-
-            {/* Featured Work - Bento Grid - Mobile & Desktop Friendly */}
+            {/* Featured Work - Bento Grid - Final Version */}
             <section className="py-20 bg-gray-50">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
@@ -335,15 +255,15 @@ const HomePage = () => {
                         className="w-full h-full object-cover transition-transform duration-500 ease-in-out md:group-hover:scale-110"
                       />
                       
-                      {/* GRADIENT OVERLAY: Visible on mobile, fades in on desktop hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100" />
+                      {/* OVERLAY: This will now fade in on desktop hover to enhance text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
 
                       {/* TEXT CONTAINER */}
                       <div className="absolute inset-0 flex items-end p-4 md:p-6">
                         <div className="text-white w-full">
-                          {/* --- Title --- */}
+                          {/* --- Title: Slides in only on desktop hover --- */}
                           <h3 
-                            className="font-bold text-lg md:text-xl transform transition-all duration-300 ease-in-out 
+                            className="font-bold text-lg md:text-xl transform transition-all duration-300 ease-in-out
                                        opacity-100 translate-y-0 
                                        md:opacity-0 md:translate-y-6 
                                        md:group-hover:opacity-100 md:group-hover:translate-y-0"
@@ -351,11 +271,12 @@ const HomePage = () => {
                             {project.title}
                           </h3>
                           
-                          {/* --- Category --- */}
+                          {/* --- Category: Dimmed on desktop, brightens on hover --- */}
                           <p 
-                            className="text-sm opacity-80 transform group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-in-out delay-100 
-                                       md:opacity-0 md:translate-y-6
-                                       md:group-hover:opacity-100 md:group-hover:translate-y-0"
+                            className="text-sm transform transition-opacity duration-300 ease-in-out
+                                       opacity-80 
+                                       md:opacity-60 
+                                       md:group-hover:opacity-100"
                           >
                             {project.category}
                           </p>
@@ -366,83 +287,12 @@ const HomePage = () => {
                 </motion.div>
               </div>
             </section>
-
-             {/* Testimonials Section
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                     <motion.div 
-                        className="text-center mb-12"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">What Our Clients Say</h2>
-                        <p className="text-lg text-gray-600 mt-2">Real feedback from real partners.</p>
-                    </motion.div>
-                    <div className="relative max-w-3xl mx-auto h-48">
-                        <AnimatePresence>
-                            <motion.div
-                                key={currentTestimonial}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5 }}
-                                className="absolute inset-0 flex flex-col items-center justify-center"
-                            >
-                                <p className="text-xl md:text-2xl italic text-gray-700">"{testimonials[currentTestimonial].quote}"</p>
-                                <p className="mt-4 font-bold text-gray-800">{testimonials[currentTestimonial].name}</p>
-                                <p className="text-sm text-orange-500">{testimonials[currentTestimonial].company}</p>
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-                </div>
-            </section> */}
-
             <Testimonials />
 
             <Process />
 
              {/* CTA Section */}
             <CTA />
-           {/* CTA Section - More vibrant 
-            <section className="section-bg-dark-gradient text-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-                    <motion.h2 
-                        className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight"
-                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        Have a project in mind?
-                    </motion.h2>
-                    <motion.p 
-                        className="text-lg text-gray-300 mb-10 max-w-2xl mx-auto"
-                         initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                    >
-                        Let's turn your ideas into a digital reality. We're ready to listen, collaborate, and build something extraordinary together.
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <motion.button 
-                            className="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg shadow-orange-500/20 hover:shadow-xl hover:shadow-orange-500/40"
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                        >
-                            Get in Touch
-                        </motion.button>
-                    </motion.div>
-                </div>
-            </section>*/}
         </div>
     );
 };
