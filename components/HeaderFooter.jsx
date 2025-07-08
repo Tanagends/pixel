@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'; 
 import { motion, AnimatePresence } from 'framer-motion';
 import {contactInfo } from '@/assets'
-import { Phone, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Phone, Instagram, Facebook, Linkedin, LoaderCircle, Loader } from 'lucide-react';
 import Link from 'next/link';
 import {
   Sheet,
@@ -13,12 +13,20 @@ import {
   SheetTrigger,
   SheetFooter
 } from "@/components/ui/sheet"
-
-const navlinks = [
-    {
-
-    }
-]
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { toast } from 'sonner'; 
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -322,9 +330,57 @@ const Header = () => {
 // Footer Component
 //----------------------------------------------------------------//
 const Footer = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const linkHoverVariant = {
         hover: { x: 4, color: "#F97316", transition: { type: "spring", stiffness: 300 } }
     };
+    
+    const formSchema = z.object({
+      email: z.string().email(
+        "Please enter a valid email address"
+      ),
+    })
+
+
+    async function onSubmit(data) {
+        
+        // Here you can handle the form submission, e.g., send data to an API
+        setIsSubmitting(true);
+        try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data), // Send your form data as JSON
+      });
+
+      if (response.ok) {
+        // Request was successful (status 200-299)
+        const result = await response.json(); // Parse the JSON response from your API
+        console.log('Subscription successful:', result);
+        toast.success(result.message || 'Thank you for subscribing!');
+        form.reset(); // Clear the form after successful submission
+      } else {
+        // Request failed (status 4xx, 5xx)
+        const errorData = await response.json(); // Get error message from API
+        console.error('Subscription failed:', errorData);
+        toast.error(errorData.message || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.error('Network or unexpected error:', error);
+      toast.error('A network error occurred. Please check your connection.');
+    } finally {
+      setIsSubmitting(false);
+    }
+}
+    const form = useForm({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: '',
+        },
+    });
+
     return (
         <footer className="bg-gray-800 text-white pt-16 pb-8">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -336,12 +392,33 @@ const Footer = () => {
                             Building the Digital Future, One Pixel at a Time.
                         </p>
                         <h4 className="font-bold text-white pt-2">Join our newsletter</h4>
-                        <div className="flex">
-                            <input type="email" placeholder="Your email" className="w-full bg-gray-700 text-white text-sm rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"/>
-                            <button className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-4 py-2 rounded-r-md transition-colors duration-300">
-                                Subscribe
-                            </button>
-                        </div>
+                        <Form {...form}>
+                            <form className="flex" onSubmit={form.handleSubmit(onSubmit)}>
+                                <Input
+                                 {...form.register("email")}
+                                 name="email"
+                                 type="email"
+                                 required
+                                 placeholder="Your email"
+                                 className="outline-0 border-0 w-full bg-gray-700 text-white text-sm rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 rounded-r-none"/>
+                                { isSubmitting ? (
+                                <button type="submit" disabled={true} className="bg-gray-500 text-white font-bold text-sm px-4 py-2 rounded-r-md transition-colors duration-300 flex">
+                                    <LoaderCircle className="animate-spin inline-block" size={16} /> <span className="inline-block">Wait...</span>
+                                </button>
+                                ) : (
+                                    <button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-4 py-2 rounded-r-md transition-colors duration-300">
+                                        Subscribe
+                                    </button>
+                                )
+                                }
+                            </form>
+                              {/* Display error message if any */}
+                              {form.formState.errors.email && (
+                                <p className="text-red-500 text-sm mt-1">
+                                  {form.formState.errors.email.message}
+                                </p>
+                              )}
+                        </Form>
                     </div>
                     {/* Column 2: Quick Links */}
                     <div className="lg:justify-self-center">

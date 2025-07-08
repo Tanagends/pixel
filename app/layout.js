@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/HeaderFooter";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,12 @@ export default function RootLayout({ children }) {
         <Header />
           {children}
         <Footer />
+        <Toaster
+          position="bottom-right"
+          toastOptions={{
+            duration: 3000,
+          }}
+        />
       </body>
     </html>
   );
