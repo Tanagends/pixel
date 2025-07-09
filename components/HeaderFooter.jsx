@@ -94,46 +94,13 @@ const Logo = ({className}) => {
 // Features a revamped mobile menu and unified hover effects for
 // all navigation links, ensuring a consistent and polished look.
 //================================================================//
-const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isServicesOpen, setIsServicesOpen] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 10);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const navItemVariants = {
-        hover: { y: -2, color: "#FF5722" },
-        tap: { scale: 0.95 }
-    };
-
-    const underlineVariants = {
-      hidden: { scaleX: 0, originX: 0.5 },
-      visible: { scaleX: 1, originX: 0.5, transition: { duration: 0.3, ease: 'easeInOut' } }
-    };
-
-    const ctaButtonVariants = {
-        hover: { scale: 1.05, boxShadow: "0px 10px 20px rgba(255, 87, 34, 0.25)" },
-        tap: { scale: 0.98 }
-    };
-
-    const navLinks = [
-        { name: 'Home', href: '/', icon: Home },
-        { name: 'Services', icon: LayoutDashboard, sublinks: [
-            { name: 'Web Development', href: '/website-development', icon: Code },
-            { name: 'Graphic Design', href: '/graphic-design', icon: PenTool },
-            // { name: 'Digital Marketing', href: '/digital-marketing', icon: Megaphone }
-        ]},
-        { name: 'Work', href: '/work', icon: Briefcase },
-        { name: 'About', href: '/about', icon: Info },
-        { name: 'Blog', href: '/blog', icon: Rss },
-        { name: 'Contact', href: '/contact', icon: Mail }
-    ];
 
     // GET A FREE QUOTE DIALOG (Modal)
     const GetFreeQuote = () => {
+        const ctaButtonVariants = {
+        hover: { scale: 1.05, boxShadow: "0px 10px 20px rgba(255, 87, 34, 0.25)" },
+        tap: { scale: 0.98 }
+    };
         const [isDialogOpen, setIsDialogOpen] = useState(false);
         const [isSubmitting, setIsSubmitting] = useState(false);
         const formSchema = z.object({
@@ -221,6 +188,45 @@ const Header = () => {
             </Dialog>
         );
     }
+
+
+const Header = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 10);
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const navItemVariants = {
+        hover: { y: -2, color: "#FF5722" },
+        tap: { scale: 0.95 }
+    };
+
+    const underlineVariants = {
+      hidden: { scaleX: 0, originX: 0.5 },
+      visible: { scaleX: 1, originX: 0.5, transition: { duration: 0.3, ease: 'easeInOut' } }
+    };
+
+    const ctaButtonVariants = {
+        hover: { scale: 1.05, boxShadow: "0px 10px 20px rgba(255, 87, 34, 0.25)" },
+        tap: { scale: 0.98 }
+    };
+
+    const navLinks = [
+        { name: 'Home', href: '/', icon: Home },
+        { name: 'Services', icon: LayoutDashboard, sublinks: [
+            { name: 'Web Development', href: '/website-development', icon: Code },
+            { name: 'Graphic Design', href: '/graphic-design', icon: PenTool },
+            // { name: 'Digital Marketing', href: '/digital-marketing', icon: Megaphone }
+        ]},
+        { name: 'Work', href: '/work', icon: Briefcase },
+        { name: 'About', href: '/about', icon: Info },
+        { name: 'Blog', href: '/blog', icon: Rss },
+        { name: 'Contact', href: '/contact', icon: Mail }
+    ];
 
     // REVAMPED AESTHETIC MOBILE MENUBAR
     const Menubar = () => {

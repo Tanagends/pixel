@@ -3,6 +3,8 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '@/components/WorkerHero';
 import { AnimatedListSection } from './AnimatedList';
+import { allProjects } from '@/assets';
+import { GetFreeQuote } from '@/components/HeaderFooter';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -19,51 +21,6 @@ const IconExternalLink = () => (
 export default function WorkPage() {
     
     // Placeholder data for portfolio projects
-    const allProjects = [
-        {
-            title: "Fintech SaaS Platform",
-            category: "Web Development",
-            description: "A comprehensive platform for financial analytics, featuring real-time data visualization and secure transaction processing.",
-            img: "https://placehold.co/800x600/1a202c/ff5722?text=Fintech+SaaS",
-            tags: ["Next.js", "GraphQL", "Data Security"]
-        },
-        {
-            title: "Aura Cosmetics Rebrand",
-            category: "Graphic Design",
-            description: "A complete brand identity overhaul for a luxury cosmetics line, including logo, packaging, and digital marketing assets.",
-            img: "https://placehold.co/800x600/ff5722/1a202c?text=Aura+Cosmetics",
-            tags: ["Branding", "Packaging", "Art Direction"]
-        },
-        {
-            title: "Global E-commerce Store",
-            category: "Web Development",
-            description: "A headless Shopify implementation for a global fashion retailer, resulting in a 300% performance increase and higher conversions.",
-            img: "https://placehold.co/800x600/1a202c/ffffff?text=E-commerce",
-            tags: ["Shopify", "Headless", "Performance"]
-        },
-        {
-            title: "HealthWell Mobile App",
-            category: "UI/UX Design",
-            description: "An intuitive UI/UX design for a wellness app that helps users track their fitness goals and mental well-being.",
-            img: "https://placehold.co/800x600/ff5722/ffffff?text=HealthWell+App",
-            tags: ["Mobile UI/UX", "Figma", "User Research"]
-        },
-        {
-            title: "Venture Capital Firm Website",
-            category: "Web Development",
-            description: "A sleek, professional website for a leading VC firm, designed to instill confidence and showcase their portfolio.",
-            img: "https://placehold.co/800x600/1a202c/ffffff?text=VC+Website",
-            tags: ["Corporate", "Webflow", "Animation"]
-        },
-        {
-            title: "Artisan Coffee Roasters",
-            category: "Graphic Design",
-            description: "A rustic yet modern branding and packaging design for a specialty coffee brand, enhancing its premium feel.",
-            img: "https://placehold.co/800x600/ff5722/1a202c?text=Artisan+Coffee",
-            tags: ["Branding", "Illustration", "Packaging"]
-        }
-    ];
-
     const [activeFilter, setActiveFilter] = useState('All');
 
     const filteredProjects = useMemo(() => {
@@ -184,13 +141,14 @@ export default function WorkPage() {
                             viewport={{ once: true, amount: 0.5 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                         >
-                            <motion.button 
+                            {/* <motion.button 
                                 className="bg-orange-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 Get a Free Quote
-                            </motion.button>
+                            </motion.button> */}
+                            <GetFreeQuote />
                         </motion.div>
                     </div>
                 </div>
