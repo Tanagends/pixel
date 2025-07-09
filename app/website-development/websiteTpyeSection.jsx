@@ -58,11 +58,11 @@ const WebsiteTypeSection = ({ type, description, price, duration, features }) =>
             {description}
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row justify-center lg:justify-start items-center sm:items-baseline gap-4 mb-8"
+            className="flex flex-col justify-center lg:justify-start items-center sm:items-baseline gap-4 mb-8"
             variants={itemVariants}
           >
-            <p className="text-5xl lg:text-6xl font-bold text-orange-500">{price}</p>
-            <p className="text-xl lg:text-2xl text-gray-600">/{duration}</p>
+            <p className="text-5xl lg:text-6xl font-bold text-orange-500">${price}</p>
+            <p className="text-xl lg:text-2xl text-gray-600">Delivered in {duration}</p>
           </motion.div>
           <Link href="/contact" className='text-black w-fit p-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-md text-white font-bold hover:scale-110 active:scale-95'>Get Yours</Link>
         </motion.div>
@@ -78,14 +78,13 @@ const WebsiteTypeSection = ({ type, description, price, duration, features }) =>
           <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center lg:text-left">What's Included:</h3>
           <ul className="space-y-4">
             {features.map((feature, index) => {
-              const IconComponent = FaIcons[feature.icon]; // Dynamically get icon component
               return (
                 <motion.li
                   key={index}
                   className="flex items-start gap-3 text-lg text-gray-700"
                   variants={itemVariants}
                 >
-                  {IconComponent && <IconComponent className="text-orange-500 text-2xl mt-1 shrink-0" />}
+                  {feature.icon && <feature.icon className="text-orange-500 text-2xl mt-1 shrink-0" />}
                   <span>{feature.text}</span>
                 </motion.li>
               );

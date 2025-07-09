@@ -7,6 +7,8 @@ import WebsiteTypeSection from './websiteTpyeSection'
 import { IconCloud } from '@/components/magicui/icon-cloud';
 import { Marquee } from "@/components/magicui/marquee";
 import { allProjects } from '@/assets';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -103,6 +105,9 @@ export default function WebDevelopmentPage() {
                      <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">What We Build</h2>
                         <p className="text-lg text-gray-600 mt-2">Specialized solutions for ambitious goals.</p>
+                        <Button className="my-3" asChild>
+                            <Link href="#packages">Jump to Packages</Link>
+                        </Button>
                     </div>
                      <motion.div 
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -185,6 +190,10 @@ export default function WebDevelopmentPage() {
             </section>                        {/* Featured Work Section */}
 
       {/* Add these Tailwind classes to your main container */}
+        <div className="text-center mt-16 mb-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Website Packages</h2>
+            <p className="text-lg text-gray-600 mt-2" id="packages">Tailored solutions for your business needs.</p>
+        </div>
         {websiteTypes.map((pkg, index) => (
           <WebsiteTypeSection
             key={index+pkg.type}
