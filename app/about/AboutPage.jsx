@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import Hero from '@/components/AboutHero';
 import CustomValueDisplay from './Values';
+import Team from '@/components/Team';
 
 // Main Hero Component
 
@@ -228,7 +229,7 @@ export default function AboutPage() {
                 ))}
             </section>
 
-            {/* Meet the Team Section */}
+            {/* Meet the Team Section 
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
@@ -261,7 +262,8 @@ export default function AboutPage() {
                         ))}
                     </motion.div>
                 </div>
-            </section>
+            </section>*/}
+            <Team />
 
             {/* CTA Section */}
             <section className="bg-gray-800">
