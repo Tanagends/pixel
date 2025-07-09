@@ -22,7 +22,7 @@ export default function BlogPage() {
             featured: true,
             title: "The 5 Core Principles of Modern Web Design in 2025",
             category: "Web Design",
-            author: "Maria Garcia",
+            author: "Tanatswa Gendere",
             date: "June 27, 2025",
             excerpt: "In an ever-evolving digital landscape, staying ahead means understanding the foundational principles that define great web design. We're diving deep into the five core tenets that will make or break user experiences in 2025 and beyond.",
             img: "https://placehold.co/1200x600/1a202c/ff5722?text=Modern+Web+Design"
@@ -30,7 +30,7 @@ export default function BlogPage() {
         {
             title: "Why Your Next Project Should Be a Headless CMS",
             category: "Web Development",
-            author: "Alex Johnson",
+            author: "Tanatswa Gendere",
             date: "June 20, 2025",
             excerpt: "Discover the power and flexibility of headless architecture and why it's becoming the standard for high-performance, scalable websites.",
             img: "https://placehold.co/600x400/1a202c/ffffff?text=Headless+CMS"
@@ -38,7 +38,7 @@ export default function BlogPage() {
         {
             title: "The Psychology of Color in Branding",
             category: "Graphic Design",
-            author: "David Chen",
+            author: "Worship Mugomeza",
             date: "June 14, 2025",
             excerpt: "Color is more than just aesthetics; it's a powerful communication tool. Learn how to leverage color psychology to build a stronger brand identity.",
             img: "https://placehold.co/600x400/ff5722/ffffff?text=Color+Psychology"
@@ -46,7 +46,7 @@ export default function BlogPage() {
         {
             title: "Optimizing for Core Web Vitals: A Developer's Guide",
             category: "Web Development",
-            author: "Alex Johnson",
+            author: "Worship Mugomeza",
             date: "June 5, 2025",
             excerpt: "A technical deep-dive into Google's Core Web Vitals and practical steps you can take to improve your site's performance and SEO ranking.",
             img: "https://placehold.co/600x400/1a202c/ffffff?text=Web+Vitals"
@@ -54,7 +54,7 @@ export default function BlogPage() {
          {
             title: "From Figma to Framer Motion: Creating Fluid Animations",
             category: "UI/UX Design",
-            author: "Maria Garcia",
+            author: "Tanatswa Gendere",
             date: "May 28, 2025",
             excerpt: "Learn our process for designing and implementing beautiful, fluid animations that enhance user experience without sacrificing performance.",
             img: "https://placehold.co/600x400/ff5722/ffffff?text=Figma+to+Framer"

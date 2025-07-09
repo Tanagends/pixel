@@ -6,6 +6,9 @@ import { websiteTypes } from '@/assets';
 import WebsiteTypeSection from './websiteTpyeSection'
 import { IconCloud } from '@/components/magicui/icon-cloud';
 import { Marquee } from "@/components/magicui/marquee";
+import { allProjects } from '@/assets';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -89,28 +92,9 @@ export default function WebDevelopmentPage() {
             description: "Modernize your legacy systems with a smooth transition to a more powerful, scalable, and secure tech stack."
         }
     ];
-
-    const techStack = [
-        "Next.js",
-        "React",
-        "Node.js",
-        "TypeScript",
-        "Python",
-        "C#",
-        "GraphQL",
-        "PostgreSQL",
-        "Docker",
-        "AWS"
-    ];
-    
-    const projects = [
-        { title: "Fintech SaaS Platform", category: "Web Application", img: "https://placehold.co/600x400/1a202c/ff5722?text=Fintech+App" },
-        { title: "Global E-commerce Store", category: "Shopify Headless", img: "https://placehold.co/600x400/ff5722/1a202c?text=E-commerce" },
-        { title: "Real-Estate Analytics Dashboard", category: "Data Visualization", img: "https://placehold.co/600x400/1a202c/ffffff?text=Dashboard" },
-    ];
     
     const processSteps = ["Discovery & Strategy", "Architecture & UX", "Development", "QA & Testing", "Deployment", "Support & Growth"];
-
+    const projects = allProjects.filter(project => project.category === "Web Development");
     return (
         <main className="bg-white pt-28">
             <Hero />
@@ -121,6 +105,9 @@ export default function WebDevelopmentPage() {
                      <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-800">What We Build</h2>
                         <p className="text-lg text-gray-600 mt-2">Specialized solutions for ambitious goals.</p>
+                        <Button className="my-3" asChild>
+                            <Link href="#packages">Jump to Packages</Link>
+                        </Button>
                     </div>
                      <motion.div 
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
@@ -194,7 +181,7 @@ export default function WebDevelopmentPage() {
                                 </div>
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
-                                    <p className="text-orange-500 font-medium">{project.category}</p>
+                                    <p className="text-orange-500 font-medium">{project.niche}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -203,6 +190,10 @@ export default function WebDevelopmentPage() {
             </section>                        {/* Featured Work Section */}
 
       {/* Add these Tailwind classes to your main container */}
+        <div className="text-center mt-16 mb-0">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Website Packages</h2>
+            <p className="text-lg text-gray-600 mt-2" id="packages">Tailored solutions for your business needs.</p>
+        </div>
         {websiteTypes.map((pkg, index) => (
           <WebsiteTypeSection
             key={index+pkg.type}

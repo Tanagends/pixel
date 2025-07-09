@@ -6,6 +6,8 @@ import GraphicDesignSection from './GraphicDesignsSection';
 import { graphicDesigns } from '@/assets';
 import { Marquee } from "@/components/magicui/marquee";
 import { Pen, PenLineIcon } from 'lucide-react';
+import { allProjects } from '@/assets';
+import { all } from 'axios';
 
 
 //================================================================//
@@ -47,12 +49,7 @@ export default function GraphicDesignPage() {
 
     const creativeToolkit = ["Figma", "Adobe Illustrator", "Adobe Photoshop", "Adobe After Effects", "Procreate", "Spline"];
     
-    const projects = [
-        { title: "Tech Startup Rebrand", category: "Brand Identity", img: "https://placehold.co/600x600/ff5722/1a202c?text=Rebrand" },
-        { title: "Mobile Banking App", category: "UI/UX Design", img: "https://placehold.co/600x600/1a202c/ffffff?text=Mobile+App" },
-        { title: "Social Media Campaign", category: "Ad Creatives", img: "https://placehold.co/600x600/ff5722/ffffff?text=Campaign" },
-    ];
-    
+    const projects = allProjects.filter(project => project.category === "Graphic Design")    
     const processSteps = ["Empathize", "Define", "Ideate", "Prototype", "Test", "Implement"];
 
     return (
@@ -114,8 +111,8 @@ export default function GraphicDesignPage() {
                                 </motion.div>
                                 ))}
                             </Marquee>
-                      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+                      {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+                      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div> */}
                     </motion.div>
                 </div>
             </section>
@@ -142,7 +139,7 @@ export default function GraphicDesignPage() {
                                 </div>
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
-                                    <p className="text-orange-500 font-medium">{project.category}</p>
+                                    <p className="text-orange-500 font-medium">{project.niche}</p>
                                 </div>
                             </motion.div>
                         ))}
