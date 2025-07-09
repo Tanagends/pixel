@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import Hero from '@/components/AboutHero';
 import CustomValueDisplay from './Values';
-import Team from '@/components/Team';
+import Team from '@/components/Team2';
 
 // Main Hero Component
 
