@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Hero from "../components/HomeHero";
 import Process from "../components/Process";
-import Promotion from "../components/Promotion";
+import Promotion from "../components/Promotion2";
 import Services from "../components/Services";
 import CTA from "../components/CTA";
 import Testimonials from "../components/Testimonials";
