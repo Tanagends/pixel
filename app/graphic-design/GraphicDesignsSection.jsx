@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image'; // Import Next.js Image component
 import BlurryCirclesBackground from '@/components/BlurryCirclesBackround';
+import { CalendarClock } from 'lucide-react'; // Importing CalendarClock icon
 
 
 const GraphicDesignSection = ({ type, description, price, duration, image }) => {
@@ -56,11 +57,11 @@ const GraphicDesignSection = ({ type, description, price, duration, image }) => 
             {description}
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row justify-center lg:justify-start items-center sm:items-baseline gap-4 mb-8"
+            className="flex flex-col justify-center lg:justify-start items-center sm:items-baseline gap-4 mb-8"
             variants={itemVariants}
           >
-            <p className="text-5xl lg:text-6xl font-bold text-orange-500">{price}</p> {/* New color for Graphic Design */}
-            <p className="text-xl lg:text-2xl text-gray-400">/{duration}</p>
+            <p className="text-5xl lg:text-6xl font-bold text-orange-500">${price}</p> {/* New color for Graphic Design */}
+            <p className="text-xl lg:text-2xl text-gray-400 flex gap-1"><CalendarClock className='p-1 text-green-500'/> <span>Delivered in {duration}</span></p>
           </motion.div>
         </motion.div>
 
@@ -83,6 +84,7 @@ const GraphicDesignSection = ({ type, description, price, duration, image }) => 
               style={{ objectFit: 'contain' }} // KEY: Ensures image fits within bounds without cropping
               quality={80} // Adjust image quality for performance vs. fidelity
               className="object-contain" // Tailwind equivalent of objectFit
+              loading='lazy' // Optional: Lazy load the image for performance
             />
           </div>
         </motion.div>

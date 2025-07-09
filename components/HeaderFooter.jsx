@@ -124,7 +124,7 @@ const Header = () => {
         { name: 'Services', icon: LayoutDashboard, sublinks: [
             { name: 'Web Development', href: '/website-development', icon: Code },
             { name: 'Graphic Design', href: '/graphic-design', icon: PenTool },
-            { name: 'Digital Marketing', href: '/digital-marketing', icon: Megaphone }
+            // { name: 'Digital Marketing', href: '/digital-marketing', icon: Megaphone }
         ]},
         { name: 'Work', href: '/work', icon: Briefcase },
         { name: 'About', href: '/about', icon: Info },

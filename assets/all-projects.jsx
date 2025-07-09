@@ -29,6 +29,30 @@
             img: "/images/zimtech-engineering.jpeg",
             niche:"Engineering",
             tags: ["Next.js", "Tailwind CSS", "SEO Optimization"]
+        },
+        {
+            title: "Urpmik Logo",
+            category: "Graphic Design",
+            description: "A sleek and modern logo design for Urpmik, reflecting their innovative approach to business.",
+            img: "/images/urpmik-logo.png",
+            niche: "Branding",
+            tags: ["Logo Design", "Brand Identity", "Adobe Illustrator"]
+        },
+        {
+            title: "Zimtech Engineering Business Card",
+            category: "Graphic Design",
+            description: "A professional business card design for Zimtech Engineering, showcasing their brand identity.",
+            img: "/images/zimtech-engineering-business-card.png",
+            niche: "Branding",
+            tags: ["Business Card Design", "Brand Identity", "Adobe Illustrator"]
+        },
+        {
+            title:"Serene Safaris Ad",
+            category: "Graphic Design",
+            description: "An eye-catching advertisement design for Serene Safaris, promoting their travel packages and services.",
+            img: "/images/serenee.jpg",
+            niche: "Marketing",
+            tags: ["Ad Design", "Marketing Materials", "Adobe Photoshop"]
         }
     ]
 
