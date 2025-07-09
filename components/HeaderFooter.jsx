@@ -34,16 +34,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from '@/components/ui/button';
 
-// Mock contactInfo if not imported
-const contactInfo = {
-    phone_1: '+1 (555) 123-4567',
-    phone_2: '+1 (555) 987-6543',
-    email: 'elite@pixelcrafte.com',
-    linkedin: 'https://linkedin.com',
-    instagram: 'https://instagram.com',
-    facebook: 'https://facebook.com',
-};
-
+import { contactInfo } from '@/assets';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -202,7 +193,7 @@ const Header = () => {
                                 <FormItem>
                                     <FormLabel>Phone (Optional)</FormLabel>
                                     <FormControl>
-                                        <Input type="tel" placeholder="+1 (555) 123-4567" {...field} className="bg-gray-800 border-gray-600 focus:ring-orange-500" />
+                                        <Input type="tel" placeholder={contactInfo.phone_2} {...field} className="bg-gray-800 border-gray-600 focus:ring-orange-500" />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
