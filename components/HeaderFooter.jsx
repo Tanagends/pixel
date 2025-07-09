@@ -115,11 +115,18 @@ const Logo = ({className}) => {
         const onSubmit = async (data) => {
             setIsSubmitting(true);
             try {
-                // Mock API call
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                toast.success("Quote request sent! We'll be in touch soon.");
-                setIsDialogOpen(false);
-                form.reset();
+               const response = await fetch('/api/get-quote', {
+                   method: 'POST',
+                   headers: { 'Content-Type': 'application/json' },
+                   body: JSON.stringify(data),
+               });
+               if (!response.ok) {
+                   toast.error("Failed to send quote request.");
+                   return;
+               }
+               toast.success("Quote request sent! We'll be in touch soon.");
+               setIsDialogOpen(false);
+               form.reset();
             } catch (error) {
                 toast.error("Failed to send quote request.");
             } finally {
@@ -392,7 +399,14 @@ const Footer = () => {
     async function onSubmit(data) {
         setIsSubmitting(true);
         try {
-            await new Promise(resolve => setTimeout(resolve, 1500)); // Mock API call
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (!response.ok) {
+                toast.error('Subscription failed. Please try again.');
+            }
             toast.success(`Subscribed! Welcome to the inner circle, ${data.email}.`);
             form.reset();
         } catch (error) {
