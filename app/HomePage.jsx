@@ -7,6 +7,7 @@ import Promotion from "../components/Promotion";
 import Services from "../components/Services";
 import CTA from "../components/CTA";
 import Testimonials from "../components/Testimonials";
+import BentoGrid from "../components/BentoGrid";
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -220,7 +221,7 @@ const HomePage = () => {
 
             <Promotion />
 
-            {/* Featured Work - Bento Grid - Final Version */}
+            {/* Featured Work - Bento Grid - Final Version 
             <section className="py-20 bg-gray-50">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
@@ -253,15 +254,15 @@ const HomePage = () => {
                         src={project.img} 
                         alt={project.title} 
                         className="w-full h-full object-cover transition-transform duration-500 ease-in-out md:group-hover:scale-110"
-                      />
+                      />*/}
                       
-                      {/* OVERLAY: This will now fade in on desktop hover to enhance text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100" />
+                      {/* OVERLAY: This will now fade in on desktop hover to enhance text readability
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent transition-opacity duration-300 opacity-100 md:opacity-0 md:group-hover:opacity-100" />*/}
 
-                      {/* TEXT CONTAINER */}
+                      {/* TEXT CONTAINER 
                       <div className="absolute inset-0 flex items-end p-4 md:p-6">
-                        <div className="text-white w-full">
-                          {/* --- Title: Slides in only on desktop hover --- */}
+                        <div className="text-white w-full">*/}
+                          {/* --- Title: Slides in only on desktop hover --- 
                           <h3 
                             className="font-bold text-lg md:text-xl transform transition-all duration-300 ease-in-out
                                        opacity-100 translate-y-0 
@@ -269,9 +270,9 @@ const HomePage = () => {
                                        md:group-hover:opacity-100 md:group-hover:translate-y-0"
                           >
                             {project.title}
-                          </h3>
+                          </h3>*/}
                           
-                          {/* --- Category: Dimmed on desktop, brightens on hover --- */}
+                          {/* --- Category: Dimmed on desktop, brightens on hover ---
                           <p 
                             className="text-sm transform transition-opacity duration-300 ease-in-out
                                        opacity-80 
@@ -287,6 +288,8 @@ const HomePage = () => {
                 </motion.div>
               </div>
             </section>
+    */}
+            <BentoGrid />
             <Testimonials />
 
             <Process />
