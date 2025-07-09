@@ -3,7 +3,9 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import Hero from '@/components/AboutHero';
 import CustomValueDisplay from './Values';
+
 // Main Hero Component
+
 const HeroOne = () => {
   return (
     <div className="relative bg-black text-white w-full min-h-screen flex items-center justify-center overflow-hidden p-4 font-sans">

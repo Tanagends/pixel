@@ -6,6 +6,7 @@ import { websiteTypes } from '@/assets';
 import WebsiteTypeSection from './websiteTpyeSection'
 import { IconCloud } from '@/components/magicui/icon-cloud';
 import { Marquee } from "@/components/magicui/marquee";
+import { allProjects } from '@/assets';
 
 //================================================================//
 // 0. INLINE SVG ICONS
@@ -89,28 +90,9 @@ export default function WebDevelopmentPage() {
             description: "Modernize your legacy systems with a smooth transition to a more powerful, scalable, and secure tech stack."
         }
     ];
-
-    const techStack = [
-        "Next.js",
-        "React",
-        "Node.js",
-        "TypeScript",
-        "Python",
-        "C#",
-        "GraphQL",
-        "PostgreSQL",
-        "Docker",
-        "AWS"
-    ];
-    
-    const projects = [
-        { title: "Fintech SaaS Platform", category: "Web Application", img: "https://placehold.co/600x400/1a202c/ff5722?text=Fintech+App" },
-        { title: "Global E-commerce Store", category: "Shopify Headless", img: "https://placehold.co/600x400/ff5722/1a202c?text=E-commerce" },
-        { title: "Real-Estate Analytics Dashboard", category: "Data Visualization", img: "https://placehold.co/600x400/1a202c/ffffff?text=Dashboard" },
-    ];
     
     const processSteps = ["Discovery & Strategy", "Architecture & UX", "Development", "QA & Testing", "Deployment", "Support & Growth"];
-
+    const projects = allProjects.filter(project => project.category === "Web Development");
     return (
         <main className="bg-white pt-28">
             <Hero />
@@ -194,7 +176,7 @@ export default function WebDevelopmentPage() {
                                 </div>
                                 <div className="p-6">
                                     <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
-                                    <p className="text-orange-500 font-medium">{project.category}</p>
+                                    <p className="text-orange-500 font-medium">{project.niche}</p>
                                 </div>
                             </motion.div>
                         ))}

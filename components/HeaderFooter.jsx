@@ -501,5 +501,5 @@ const Footer = () => {
     );
 };
 
-export { Header, Footer };
+export { Header, Footer, GetFreeQuote };
 
