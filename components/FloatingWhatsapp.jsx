@@ -1,5 +1,6 @@
 // components/FloatingWhatsApp.jsx
 "use client"; // This component uses a link, but no other client-side hooks are needed.
+import Link from 'next/link';
 
 import React from 'react';
 import { FaWhatsapp } from "react-icons/fa";
@@ -33,11 +34,11 @@ const FloatingWhatsApp = () => {
     // Use the full number including country code, without "+", spaces, or dashes.
     // Example: For +1 (234) 567-8900, use 1234567890
     // ==========================================================
-    const phoneNumber = "1234567890";
+    const phoneNumber = "263771975597";
     const whatsappLink = `https://wa.me/${phoneNumber}`;
 
     return (
-        <a
+        <Link
             href={whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
@@ -45,7 +46,7 @@ const FloatingWhatsApp = () => {
             aria-label="Chat with us on WhatsApp"
         >
             <WhatsAppIcon />
-        </a>
+        </Link>
     );
 };
 
