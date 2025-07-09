@@ -39,7 +39,7 @@ const promoData = {
 };
 
 //================================================================//
-// Interactive Promotion Panel Component
+// Interactive Promotion Panel Component (CORRECTED)
 //================================================================//
 const PromoPanel = ({ data, isActive }) => {
     const panelVariants = {
@@ -76,7 +76,8 @@ const PromoPanel = ({ data, isActive }) => {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
+                    // THIS IS THE CORRECTED LINE:
+                    className="absolute inset-0 flex flex-col items-center justify-start text-center p-8 pt-28"
                 >
                     <motion.div variants={itemVariants} className="mb-4">{data.icon}</motion.div>
                     <motion.span variants={itemVariants} className={`font-semibold text-sm tracking-widest uppercase text-orange-400`}>
@@ -105,7 +106,7 @@ const PromoPanel = ({ data, isActive }) => {
 };
 
 //================================================================//
-// Main PromotionSection Component
+// Main PromotionSection Component (No changes needed here now)
 //================================================================//
 export default function PromotionSection() {
     const [activePromo, setActivePromo] = useState('education');
@@ -125,7 +126,6 @@ export default function PromotionSection() {
                     isActive ? 'text-white' : 'text-gray-400 hover:text-white/70'
                 }`}
             >
-                {children}
                 {isActive && (
                     <motion.div
                         layoutId="activePill"

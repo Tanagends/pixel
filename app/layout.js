@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/HeaderFooter";
 import { Toaster } from "sonner";
+import Whatsapp from "@/components/FloatingWhatsapp";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
           {children}
+        <Whatsapp />
         <Footer />
         <Toaster
           position="bottom-right"
