@@ -73,9 +73,9 @@ export const metadata = {
     creator: "@pixelcrafte", // Optional: Replace with your Twitter handle
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/pixel-crafte-logo.png",
+    shortcut: "/pixel-crafte-logo.png",
+    apple: "/pixel-crafte-logo.png",
   },
   manifest: `${siteUrl}/site.webmanifest`,
 };
