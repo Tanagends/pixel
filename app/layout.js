@@ -97,22 +97,22 @@ export default function RootLayout({ children }) {
           }}
           richColors
         />
+        <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Pixel Crafte",
+          "url": "https://pixelcrafte.co.zw",
+          "logo": "https://pixelcrafte.co.zw/logo.svg",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+263-77-197-5597", // Add your phone number
+            "contactType": "customer service"
+          }
+        }) }}
+      />
       </body>
-      <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Pixel Crafte",
-        "url": "https://pixelcrafte.co.zw",
-        "logo": "https://pixelcrafte.co.zw/logo.svg",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+263-77-197-5597", // Add your phone number
-          "contactType": "customer service"
-        }
-      }) }}
-    />
     </html>
   );
 }
