@@ -460,7 +460,7 @@ const Footer = () => {
                      <div className="lg:justify-self-center">
                         <h3 className="text-xl font-bold mb-5 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-500">Our Expertise</h3>
                         <ul className="space-y-3">
-                             <li><FooterLink href="/website-development">Web Development</FooterLink></li>
+                             <li><FooterLink href="/website-development">Web Deivelopment</FooterLink></li>
                              <li><FooterLink href="/graphic-design">Graphic Design</FooterLink></li>
                              <li><FooterLink href="/ui-ux-design">UI/UX Design</FooterLink></li>
                              <li><FooterLink href="/seo-strategy">SEO Strategy</FooterLink></li>
