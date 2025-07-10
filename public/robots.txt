@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://pixelcrafte.co.zw
+
+# Sitemaps
+Sitemap: https://pixelcrafte.co.zw/sitemap.xml
