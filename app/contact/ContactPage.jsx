@@ -5,7 +5,9 @@ import Hero from '@/components/ContactHero';
 import Subscribe from './Subscribe';
 import ContactForm from './ContactForm';
 import { Globe } from '@/components/magicui/globe';
-import { MapPin, Phone, Mail, Building } from 'lucide-react';
+import { MapPin, Phone, Mail, Linkedin, Facebook, Instagram} from 'lucide-react';
+import { contactInfo } from '@/assets';
+import Link from 'next/link';
 
 // Main Hero Component
 const HeroTwo = () => {
@@ -203,24 +205,38 @@ export default function ContactPage() {
                             <h2 className="text-3xl font-bold text-white mb-8">Contact Information</h2>
                             <div className="space-y-8">
                                 <div className="flex items-start space-x-4">
-                                    <div className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Building size={20} /></div>
-                                    <div>
-                                        <h3 className="font-bold text-white">Our Office</h3>
-                                        <p className="text-gray-400">123 Creative Lane<br/>Innovate City, CA 90210</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start space-x-4">
-                                     <div className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Phone size={20} /></div>
+                                     <Link href={`tel:${contactInfo.phone_1}`} className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Phone size={20} /></Link>
                                     <div>
                                         <h3 className="font-bold text-white">Phone</h3>
-                                        <p className="text-gray-400">+1 (234) 567-890</p>
+                                        <p className="text-gray-400">{contactInfo.phone_1}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
-                                     <div className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Mail size={20} /></div>
+                                     <Link href={`mailto:${contactInfo.email}`} className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Mail size={20} /></Link>
                                     <div>
                                         <h3 className="font-bold text-white">Email</h3>
-                                        <p className="text-gray-400">hello@pixelcrafte.com</p>
+                                        <p className="text-gray-400">{contactInfo.email}</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start space-x-4">
+                                     <Link href={contactInfo.facebook} className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Facebook size={20} /></Link>
+                                    <div>
+                                        <h3 className="font-bold text-white">Facebook</h3>
+                                        <p className="text-gray-400">Pixel Crafte</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start space-x-4">
+                                     <Link href={contactInfo.instagram} className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Instagram size={20} /></Link>
+                                    <div>
+                                        <h3 className="font-bold text-white">Instagram</h3>
+                                        <p className="text-gray-400">Pixel Crafte</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-start space-x-4">
+                                     <Link href={contactInfo.linkedin} className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Linkedin size={20} /></Link>
+                                    <div>
+                                        <h3 className="font-bold text-white">Linkedin</h3>
+                                        <p className="text-gray-400">Pixel Crafte</p>
                                     </div>
                                 </div>
                             </div>
