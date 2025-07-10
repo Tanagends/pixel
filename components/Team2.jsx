@@ -23,38 +23,27 @@ const IconGithub = () => (
 // Added a 'skills' array to highlight expertise.
 const teamMembers = [
     {
-        name: 'Alex Rivera',
-        role: 'Lead Creative Strategist',
-        img: 'https://placehold.co/200x200/1a202c/ffffff?text=AR',
-        bio: 'Alex bridges the gap between bold ideas and tangible results, crafting brand narratives that captivate and convert.',
-        skills: ['Brand Identity', 'UX/UI Theory', 'Market Analysis', 'Creative Direction'],
+        name:"Tanatswa H Gendere",
+        role: 'Backend Engineer & DevOps Specialist',
+        img: 'https://placehold.co/200x200/1a202c/ffffff?text=THG',
+        bio: 'Tanatswa excels in building robust backend systems and optimizing deployment pipelines for maximum efficiency.',
+        skills: ['Node.js', 'Express', 'Docker', 'Kubernetes', 'AWS', 'Python'],
         social: {
             linkedin: 'https://linkedin.com',
-            github: 'https://github.com',
+            github: 'https://github.com/Tanagends/',
         },
     },
     {
-        name: 'Samantha Chen',
-        role: 'Principal Engineer',
-        img: 'https://placehold.co/200x200/1a202c/ffffff?text=SC',
-        bio: 'With a passion for clean code and scalable architecture, Samantha turns complex problems into elegant, high-performance solutions.',
-        skills: ['React & Next.js', 'Node.js', 'GraphQL', 'Cloud Architecture'],
+        name: "Worship L Mugomeza",
+        role: 'Frontend Engineer & Mobile App Developer',
+        img: 'https://placehold.co/200x200/1a202c/ffffff?text=WLM',
+        bio: 'Worship is a skilled developer with a passion for creating seamless user experiences across web and mobile platforms.',
+        skills: ['React', 'Next.js', 'React Native', 'Tailwind CSS', 'TypeScript', 'Flutter'],
         social: {
-            linkedin: 'https://linkedin.com',
-            github: 'https://github.com',
+            linkedin: 'https://www.linkedin.com/in/worship-livingstone-mugomeza-aa771a318/',
+            github: 'https://github.com/worshix/',
         },
-    },
-    {
-        name: 'David Lee',
-        role: 'Senior Product Designer',
-        img: 'https://placehold.co/200x200/1a202c/ffffff?text=DL',
-        bio: 'David is obsessed with user-centric design, creating intuitive and beautiful interfaces that users love to interact with.',
-        skills: ['Figma', 'Prototyping', 'User Research', 'Design Systems'],
-        social: {
-            linkedin: 'https://linkedin.com',
-            github: 'https://github.com',
-        },
-    },
+    }
 ];
 
 // --- Framer Motion Animation Variants ---
@@ -97,7 +86,7 @@ const TeamSection = () => {
 
                 {/* Team Grid */}
                 <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-10"
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"

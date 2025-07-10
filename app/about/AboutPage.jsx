@@ -106,23 +106,6 @@ const IconTwitterSocial = () => (
 //================================================================//
 export default function AboutPage() {
 
-    const teamMembers = [
-        {
-            name: "Alex Johnson",
-            role: "Founder & Lead Developer",
-            bio: "With over a decade of experience in architecture and development, Alex founded PixelCrafte to merge technical prowess with creative vision.",
-            img: "https://placehold.co/400x400/1a202c/ffffff?text=Alex",
-            social: { linkedin: "#", twitter: "#" }
-        },
-        {
-            name: "Maria Garcia",
-            role: "Creative Director",
-            bio: "Maria's passion for design and user experience drives our creative engine, ensuring every project is both beautiful and intuitive.",
-            img: "https://placehold.co/400x400/ff5722/ffffff?text=Maria",
-            social: { linkedin: "#", twitter: "#" }
-        }
-    ];
-
     const values = [
         {
             icon: <IconZap />,
@@ -229,40 +212,6 @@ export default function AboutPage() {
                 ))}
             </section>
 
-            {/* Meet the Team Section 
-            <section className="py-20 bg-white">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Meet the Team</h2>
-                        <p className="text-lg text-gray-600 mt-2">The creative minds behind your success.</p>
-                    </div>
-                     <motion.div
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                     >
-                        {teamMembers.map((member) => (
-                             <motion.div
-                                key={member.name}
-                                className="text-center bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-xl transition-shadow duration-300"
-                                variants={itemVariants}
-                                whileHover={{ y: -8 }}
-                             >
-                                <img src={member.img} alt={member.name} className="w-32 h-32 rounded-full mx-auto mb-4 object-cover" />
-                                <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
-                                <p className="text-orange-500 font-medium mb-2">{member.role}</p>
-                                <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
-                                <div className="flex justify-center space-x-4 text-gray-500">
-                                    <a href={member.social.linkedin} className="hover:text-orange-500 transition-colors"><IconLinkedinSocial /></a>
-                                    <a href={member.social.twitter} className="hover:text-orange-500 transition-colors"><IconTwitterSocial /></a>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>*/}
             <Team />
 
             {/* CTA Section */}
