@@ -25,7 +25,7 @@ const teamMembers = [
     {
         name:"Tanatswa H Gendere",
         role: 'Backend Engineer & DevOps Specialist',
-        img: 'https://placehold.co/200x200/1a202c/ffffff?text=THG',
+        img: 'images/tanatswa-gendere.jpeg',
         bio: 'Tanatswa excels in building robust backend systems and optimizing deployment pipelines for maximum efficiency.',
         skills: ['Node.js', 'Express', 'Docker', 'Kubernetes', 'AWS', 'Python'],
         social: {
@@ -36,7 +36,7 @@ const teamMembers = [
     {
         name: "Worship L Mugomeza",
         role: 'Frontend Engineer & Mobile App Developer',
-        img: 'https://placehold.co/200x200/1a202c/ffffff?text=WLM',
+        img: 'images/worship-mugomeza.jpg',
         bio: 'Worship is a skilled developer with a passion for creating seamless user experiences across web and mobile platforms.',
         skills: ['React', 'Next.js', 'React Native', 'Tailwind CSS', 'TypeScript', 'Flutter'],
         social: {
