@@ -160,7 +160,7 @@ export default function AboutPage() {
                         >
                             <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Story</h2>
                             <p className="text-gray-600 mb-4">
-                                Founded in 2018, PixelCrafte was born from a shared belief that technology and design should be inseparable. We saw a gap between rigid development firms and purely aesthetic design agencies. Our mission was simple: to create a single, unified team that could build digital products that were both technically brilliant and beautifully designed.
+                                Founded in 2023, PixelCrafte was born from a shared belief that technology and design should be inseparable. We saw a gap between rigid development firms and purely aesthetic design agencies. Our mission was simple: to create a single, unified team that could build digital products that were both technically brilliant and beautifully designed.
                             </p>
                             <p className="text-gray-600">
                                 From our humble beginnings in a small office, we've grown into a dynamic agency serving clients worldwide. Our passion for problem-solving and our commitment to quality have been the cornerstones of our journey.
