@@ -5,7 +5,7 @@ import Hero from '@/components/ContactHero';
 import Subscribe from './Subscribe';
 import ContactForm from './ContactForm';
 import { Globe } from '@/components/magicui/globe';
-import { MapPin } from 'lucide-react';
+import { MapPin, Phone, Mail, Building } from 'lucide-react';
 
 // Main Hero Component
 const HeroTwo = () => {
@@ -133,17 +133,17 @@ const IconPlus = ({ className }) => (
 //================================================================//
 const AccordionItem = ({ question, answer, isOpen, onClick }) => {
     return (
-        <div className="border-b border-gray-200 py-6 pt-28">
+        <div className="border-b border-gray-200/20 py-6">
             <motion.div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={onClick}
             >
-                <h3 className="text-lg font-medium text-gray-800">{question}</h3>
+                <h3 className="text-lg font-medium text-gray-200">{question}</h3>
                 <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
                 >
-                    <IconPlus className={`transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`} />
+                    <IconPlus className={`transition-transform duration-300 text-orange-500`} />
                 </motion.div>
             </motion.div>
             <AnimatePresence initial={false}>
@@ -159,7 +159,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick }) => {
                         }}
                         transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
-                        <p className="text-gray-600">{answer}</p>
+                        <p className="text-gray-400">{answer}</p>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -185,73 +185,75 @@ export default function ContactPage() {
     ];
 
     return (
-        <div className="bg-white pt-28">            
+        <div className="bg-gray-900 text-gray-200 pt-28">            
             <Hero />
 
             {/* Contact Form & Details Section */}
-            <section className="py-20">
+            <section className="py-20 bg-gray-900">
                  <div className="container mx-auto px-4 sm:px-6 lg:px-8 my-16">
                     <div className="grid lg:grid-cols-3 gap-12">
                         {/* Column 1: Contact Details */}
                         <motion.div
-                             className="lg:col-span-1"
+                             className="lg:col-span-1 bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-lg"
                              initial={{x: -50, opacity: 0}}
                              whileInView={{x: 0, opacity: 1}}
                              viewport={{ once: true, amount: 0.5 }}
                              transition={{duration: 0.8, ease: 'easeOut'}}
                         >
-                            <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
-                            <div className="space-y-6">
+                            <h2 className="text-3xl font-bold text-white mb-8">Contact Information</h2>
+                            <div className="space-y-8">
                                 <div className="flex items-start space-x-4">
-                                    <div className="bg-orange-100 text-orange-500 rounded-full p-3 mt-1"><IconMapPin /></div>
+                                    <div className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Building size={20} /></div>
                                     <div>
-                                        <h3 className="font-bold text-gray-800">Our Office</h3>
-                                        <p className="text-gray-600">123 Creative Lane<br/>Innovate City, CA 90210</p>
+                                        <h3 className="font-bold text-white">Our Office</h3>
+                                        <p className="text-gray-400">123 Creative Lane<br/>Innovate City, CA 90210</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
-                                     <div className="bg-orange-100 text-orange-500 rounded-full p-3 mt-1"><IconPhoneCall /></div>
+                                     <div className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Phone size={20} /></div>
                                     <div>
-                                        <h3 className="font-bold text-gray-800">Phone</h3>
-                                        <p className="text-gray-600">+1 (234) 567-890</p>
+                                        <h3 className="font-bold text-white">Phone</h3>
+                                        <p className="text-gray-400">+1 (234) 567-890</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start space-x-4">
-                                     <div className="bg-orange-100 text-orange-500 rounded-full p-3 mt-1"><IconMail /></div>
+                                     <div className="bg-orange-500/10 text-orange-400 rounded-full p-3 mt-1 border border-orange-500/20"><Mail size={20} /></div>
                                     <div>
-                                        <h3 className="font-bold text-gray-800">Email</h3>
-                                        <p className="text-gray-600">hello@pixelcrafte.com</p>
+                                        <h3 className="font-bold text-white">Email</h3>
+                                        <p className="text-gray-400">hello@pixelcrafte.com</p>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
                         
                         {/* Column 2: Contact Form */}
-                        <ContactForm />
+                        <div className="lg:col-span-2 bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-lg">
+                            <ContactForm />
+                        </div>
                     </div>
                 </div>
             </section>
 
             <Subscribe />
             {/* Map Section */}
-            <section className="bg-gray-50 overflow-hidden">
-                <div className="relative flex items-center justify-center overflow-hidden rounded-lg border bg-background px-40 pb-40 pt-8 md:pb-60 w-full mx-auto">
-                  <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-7xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
-                        <MapPin className='text-orange-500' /> We Are Everywhere
+            <section className="bg-gray-900 overflow-hidden">
+                <div className="relative flex items-center justify-center overflow-hidden rounded-lg bg-transparent px-4 sm:px-8 md:px-20 lg:px-40 pb-40 pt-8 md:pb-60 w-full mx-auto">
+                  <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-white to-gray-400/80 bg-clip-text text-center text-5xl sm:text-6xl md:text-7xl font-semibold leading-none text-transparent">
+                        <MapPin className='text-orange-500 inline-block mb-2' size={48} /> We Are Everywhere
                   </span>
                   <Globe className="top-28 text-orange-500" 
                   />
-                  <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.2),rgba(255,255,255,0))]" />
+                  <div className="pointer-events-none absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(255,165,0,0.1),rgba(0,0,0,0))]" />
                 </div>            
             </section>
             
              {/* FAQ Section */}
-            <section className="py-20 bg-white">
+            <section className="py-20 bg-gray-900">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Quick Answers</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">Quick Answers</h2>
                     </div>
-                    <div>
+                    <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-lg">
                         {faqData.map((faq, index) => (
                             <AccordionItem 
                                 key={index}

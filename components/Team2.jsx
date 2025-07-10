@@ -44,7 +44,7 @@ const teamMembers = [
             github: 'https://github.com/worshix/',
         },
     }
-];
+];          
 
 // --- Framer Motion Animation Variants ---
 const containerVariants = {

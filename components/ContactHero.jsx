@@ -14,6 +14,7 @@ const CircuitBackground = () => {
         
         const ctx = canvas.getContext('2d');
         let animationFrameId;
+        let isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         const setCanvasSize = () => {
             canvas.width = canvas.parentElement.offsetWidth;
@@ -30,6 +31,7 @@ const CircuitBackground = () => {
                 this.life = 1;
                 this.decay = Math.random() * 0.01 + 0.005;
                 this.isOrange = Math.random() < 0.1; // 10% chance to be orange
+                this.isMainColor = Math.random() < 0.2; // 20% chance to be the main color (white/black)
             }
 
             update() {
@@ -59,7 +61,16 @@ const CircuitBackground = () => {
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                const color = this.isOrange ? `rgba(255, 87, 34, ${this.life})` : `rgba(255, 255, 255, ${this.life * 0.5})`;
+                
+                let color;
+                if (this.isOrange) {
+                    color = `rgba(255, 107, 53, ${this.life})`; // Brighter orange
+                } else if (this.isMainColor) {
+                    color = isDarkMode ? `rgba(255, 255, 255, ${this.life * 0.7})` : `rgba(0, 0, 0, ${this.life * 0.5})`;
+                } else {
+                    color = isDarkMode ? `rgba(255, 255, 255, ${this.life * 0.2})` : `rgba(0, 0, 0, ${this.life * 0.1})`;
+                }
+                
                 ctx.fillStyle = color;
                 ctx.fill();
             }
@@ -90,8 +101,9 @@ const CircuitBackground = () => {
                     // Increased connection distance for more lines
                     if (distance < 120) {
                         const opacity = 1 - (distance / 120);
+                        const lineColor = isDarkMode ? `rgba(255, 255, 255, ${opacity * 0.15})` : `rgba(0, 0, 0, ${opacity * 0.1})`;
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.15})`;
+                        ctx.strokeStyle = lineColor;
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(particles[j].x, particles[j].y);
                         ctx.stroke();
@@ -105,74 +117,59 @@ const CircuitBackground = () => {
             setCanvasSize();
             init();
         };
+        
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleThemeChange = (e) => {
+            isDarkMode = e.matches;
+            init(); // Re-initialize particles with new colors
+        };
 
         setCanvasSize();
         init();
         animate();
+
         window.addEventListener('resize', handleResize);
+        mediaQuery.addEventListener('change', handleThemeChange);
 
         return () => {
             cancelAnimationFrame(animationFrameId);
             window.removeEventListener('resize', handleResize);
+            mediaQuery.removeEventListener('change', handleThemeChange);
         };
     }, []);
 
-    // The z-index is necessary to place the canvas behind the text content.
-    // -z-10 places it behind its parent, which has a stacking context.
-    return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />;
+    return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0" />;
 };
 
 
 //================================================================//
-// ContactPageHero Component
+// Main Hero Component
 //================================================================//
-export default function ContactPageHero() {
-
-    const containerVariants = {
-        hidden: {},
-        visible: { transition: { staggerChildren: 0.1, delayChildren: 0.3 } },
-    };
-
-    const wordVariants = {
-        hidden: { opacity: 0, y: 20, skewY: 3 },
-        visible: { opacity: 1, y: 0, skewY: 0, transition: { duration: 0.8, ease: 'easeOut' } },
-    };
-
-    const headline1 = "Let's";
-    const headline2 = "Connect";
-
+const Hero = () => {
     return (
-        <section className="relative bg-gray-900 text-white py-24 md:py-32 overflow-hidden">
+        <header className="relative w-full h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-gray-100 dark:bg-gray-900">
             <CircuitBackground />
-        {/*<div className="absolute inset-0 bg-black/60"></div>*/}
-            
-            <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                 <motion.h1
-                    className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.span className="inline-block mr-3" variants={wordVariants}>
-                        {headline1}
-                    </motion.span>
-                    <span className="text-orange-500">
-                         <motion.span className="inline-block" variants={wordVariants}>
-                            {headline2}
-                        </motion.span>
-                    </span>
-                </motion.h1>
-
-                <motion.p
-                    className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300"
-                    initial={{ opacity: 0, y: 20 }}
+            <div className="relative z-10 text-center p-4">
+                <motion.h1 
+                    className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 text-gray-900 dark:text-white"
+                    initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8, ease: 'easeOut' }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    Have a question or a project in mind? We'd love to hear from you. Fill out the form below or reach out to us directly.
+                    Get in <span className="text-orange-500">Touch</span>
+                </motion.h1>
+                <motion.p 
+                    className="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-300"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                >
+                    Have a project in mind or just want to say hello? We'd love to hear from you.
                 </motion.p>
             </div>
-        </section>
+        </header>
     );
-}
+};
+
+export default Hero;
 

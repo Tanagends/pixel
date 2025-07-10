@@ -73,7 +73,7 @@ const ContactForm = () => {
 
   return (
     <motion.div
-      className="lg:col-span-2 bg-gray-50 p-8 rounded-lg shadow-lg"
+      className="w-full"
       initial={{ x: 50, opacity: 0 }}
       whileInView={{ x: 0, opacity: 1 }}
       viewport={{ once: true, amount: 0.5 }}
@@ -88,13 +88,13 @@ const ContactForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="block text-sm font-medium text-gray-700 mb-1">Full Name</FormLabel>
+                  <FormLabel className="block text-sm font-medium text-gray-300 mb-1">Full Name</FormLabel>
                   <FormControl>
                     <Input
                       type="text"
-                      placeholder="Your Full Name" // Added placeholder
-                      className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm h-12" // Adjusted height for better UX
-                      {...field} // Spreads onChange, onBlur, value, and ref
+                      placeholder="Your Full Name"
+                      className="w-full px-4 py-3 rounded-md bg-white/5 border-white/20 focus:ring-orange-500 focus:border-orange-500 shadow-sm h-12 text-white"
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage className="text-red-400 text-xs mt-1" />
@@ -108,12 +108,12 @@ const ContactForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="block text-sm font-medium text-gray-700 mb-1">Email Address</FormLabel>
+                  <FormLabel className="block text-sm font-medium text-gray-300 mb-1">Email Address</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="your@example.com" // Added placeholder
-                      className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm h-12"
+                      placeholder="your@example.com"
+                      className="w-full px-4 py-3 rounded-md bg-white/5 border-white/20 focus:ring-orange-500 focus:border-orange-500 shadow-sm h-12 text-white"
                       {...field}
                     />
                   </FormControl>
@@ -129,12 +129,12 @@ const ContactForm = () => {
             name="subject"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block text-sm font-medium text-gray-700 mb-1">Subject</FormLabel>
+                <FormLabel className="block text-sm font-medium text-gray-300 mb-1">Subject</FormLabel>
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder="Regarding your services..." // Added placeholder
-                    className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm h-12"
+                    placeholder="Regarding your services..."
+                    className="w-full px-4 py-3 rounded-md bg-white/5 border-white/20 focus:ring-orange-500 focus:border-orange-500 shadow-sm h-12 text-white"
                     {...field}
                   />
                 </FormControl>
@@ -149,12 +149,12 @@ const ContactForm = () => {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block text-sm font-medium text-gray-700 mb-1">Message</FormLabel>
+                <FormLabel className="block text-sm font-medium text-gray-300 mb-1">Message</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Write your message here..." // Added placeholder
-                    rows={5} // Set rows for textarea
-                    className="w-full px-4 py-3 rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500 shadow-sm"
+                    placeholder="Write your message here..."
+                    rows={5}
+                    className="w-full px-4 py-3 rounded-md bg-white/5 border-white/20 focus:ring-orange-500 focus:border-orange-500 shadow-sm text-white"
                     {...field}
                   />
                 </FormControl>
