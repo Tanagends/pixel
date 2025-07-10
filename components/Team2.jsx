@@ -29,7 +29,7 @@ const teamMembers = [
         bio: 'Tanatswa excels in building robust backend systems and optimizing deployment pipelines for maximum efficiency.',
         skills: ['Node.js', 'Express', 'Docker', 'Kubernetes', 'AWS', 'Python'],
         social: {
-            linkedin: 'https://linkedin.com',
+            linkedin: 'https://www.linkedin.com/in/tanagends/',
             github: 'https://github.com/Tanagends/',
         },
     },

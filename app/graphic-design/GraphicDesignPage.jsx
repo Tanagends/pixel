@@ -8,6 +8,7 @@ import { Marquee } from "@/components/magicui/marquee";
 import { Pen, PenLineIcon } from 'lucide-react';
 import { allProjects } from '@/assets';
 import { all } from 'axios';
+import { GetFreeQuote } from '@/components/HeaderFooter';
 
 
 //================================================================//
@@ -197,6 +198,47 @@ export default function GraphicDesignPage() {
                     </div>
                 </div>
             </section>
+
+                        <section className="bg-white">
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                     <div className="bg-gray-800 text-white rounded-lg p-10 md:p-16 text-center shadow-2xl">
+                        <motion.h2 
+                            className="text-3xl md:text-4xl font-bold mb-4"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            Ready to Start Your Own Masterpiece?
+                        </motion.h2>
+                        <motion.p 
+                            className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                        >
+                            Let's collaborate to build a digital solution that not only looks stunning but also drives results.
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.5 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                        >
+                            {/* <motion.button 
+                                className="bg-orange-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-orange-600 transition-colors duration-300 shadow-lg"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Get a Free Quote
+                            </motion.button> */}
+                            <GetFreeQuote />
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
         </div>
     );
 }
