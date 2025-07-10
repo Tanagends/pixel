@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import axios from 'axios';
+import {toast} from 'sonner'
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
@@ -17,9 +18,13 @@ export default function Newsletter() {
       if (response.data.error) {
         setStatus('error');
         setMessage(response.data.error);
+        toast.error(response.data.error);
       } else {
         setStatus('success');
         setMessage('Subscribed!');
+        toast.success('Subscribed successfully!');
+        setEmail('');
+        setName('');
       }
     } catch (error) {
       console.error('Form submission error:', error.response?.data);
