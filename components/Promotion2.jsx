@@ -88,7 +88,8 @@ const PromoPanel = ({ data, isActive }) => {
                     <motion.p variants={itemVariants} className="max-w-xl text-gray-300 mb-8">
                         {data.description}
                     </motion.p>
-                    <motion.button
+                    <motion.a
+                    href="/contact"
                         variants={itemVariants}
                         className={`inline-flex items-center space-x-2.5 font-bold py-3 px-8 rounded-full text-white bg-orange-500 transition-all duration-300`}
                         style={{'--glow-color': '249, 115, 22', boxShadow: '0 0 20px rgba(var(--glow-color),0.7)'}}
@@ -97,7 +98,7 @@ const PromoPanel = ({ data, isActive }) => {
                     >
                         <span>{data.buttonText}</span>
                         <IconArrowRight />
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
             )}
         </AnimatePresence>

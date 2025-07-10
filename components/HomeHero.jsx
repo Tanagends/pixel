@@ -219,7 +219,8 @@ export default function HomePageHero() {
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8, delay: 1.8, ease: 'easeOut' }}
                 >
-                    <motion.button
+                    <motion.a
+                    href="/work"
                         className="bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold py-4 px-10 rounded-full text-lg shadow-lg transition-all duration-300"
                         whileHover={{ 
                             scale: 1.1, 
@@ -227,8 +228,8 @@ export default function HomePageHero() {
                         }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        Discover Our Craft
-                    </motion.button>
+                        Discover Our Crafts
+                    </motion.a>
                 </motion.div>
             </div>
         </section>

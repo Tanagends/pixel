@@ -75,14 +75,15 @@ const ArchitectCtaSection = () => {
               We move beyond templates. Our process involves deep collaboration to build a bespoke digital foundation that is robust, scalable, and engineered for success.
             </p>
 
-            <motion.button
+            <motion.a
+              href="/contact"
               className="inline-flex items-center px-8 py-3 text-base font-semibold text-white transition-colors bg-transparent border-2 border-amber-500 rounded-full group hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-amber-500"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <span>Begin the Blueprint</span>
               <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" size={20} />
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           {/* --- Animated Visual Column (Unchanged) --- */}

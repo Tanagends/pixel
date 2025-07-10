@@ -100,7 +100,7 @@ const ServicesSection = () => {
             <p className="text-gray-600 mb-6">
               We build high-performance, responsive websites and e-commerce platforms. Our focus on clean code and intuitive UI/UX ensures a seamless experience for your users.
             </p>
-            <a href="/services/web-development" className="font-bold text-orange-600 hover:text-orange-500 transition flex items-center group">
+            <a href="/website-development" className="font-bold text-orange-600 hover:text-orange-500 transition flex items-center group">
               Explore Our Process <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
@@ -118,7 +118,7 @@ const ServicesSection = () => {
             <p className="text-gray-600 mb-6">
               Your brand is your story. We craft memorable logos, color palettes, and marketing materials that create a cohesive and compelling brand identity.
             </p>
-            <a href="/services/graphic-design" className="font-bold text-orange-600 hover:text-orange-500 transition flex items-center group">
+            <a href="/graphic-design" className="font-bold text-orange-600 hover:text-orange-500 transition flex items-center group">
               View Our Portfolio <ArrowRight size={20} className="ml-2 transform group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>

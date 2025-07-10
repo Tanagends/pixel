@@ -17,18 +17,18 @@ export default function TestimonialsSection() {
     const testimonials = [
         {
             quote: "PixelCrafte transformed our online presence. Their attention to detail and creative solutions are second to none.",
-            name: "Jane Doe",
-            company: "CEO, Innovate Inc."
+            name: "Eng T. Mutwira",
+            company: "Zimtech Engineering."
         },
         {
             quote: "The new branding is fantastic. It perfectly captures our company's essence and has received amazing feedback from our customers.",
-            name: "John Smith",
-            company: "Founder, Artisan Goods"
+            name: "CEO",
+            company: "Rehoboth Engineering"
         },
         {
             quote: "Working with the PixelCrafte team was a dream. They are not only talented but also incredibly professional and delivered ahead of schedule.",
-            name: "Emily White",
-            company: "Marketing Director, Tech Solutions"
+            name: "Ryan Useya",
+            company: "Urpmik Packaging"
         },
     ];
 
@@ -46,29 +46,6 @@ export default function TestimonialsSection() {
     //================================================================//
     return (
         <section className="py-20 md:py-24 bg-black text-white relative overflow-hidden">
-            {/* Animated gradient background
-            <div className="absolute inset-0 z-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
-                <motion.div
-                    className="absolute top-0 left-0 w-96 h-96 bg-orange-500/20 rounded-full filter blur-3xl"
-                    animate={{
-                        x: ['-20%', '20%', '-20%'],
-                        y: ['-20%', '20%', '-20%'],
-                        scale: [1, 1.2, 1],
-                    }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                    className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full filter blur-3xl"
-                    animate={{
-                        x: ['20%', '-20%', '20%'],
-                        y: ['20%', '-20%', '20%'],
-                        scale: [1, 1.2, 1],
-                    }}
-                    transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-                />
-            </div> */}
-
         
             //================================================================//
             // Vibrant Background Option 2: Image Background
