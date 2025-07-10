@@ -4,6 +4,7 @@ import React from 'react';
 import Hero from '@/components/AboutHero';
 import CustomValueDisplay from './Values';
 import Team from '@/components/Team2';
+import Story from '@/components/Story';
 
 // Main Hero Component
 
@@ -140,7 +141,7 @@ export default function AboutPage() {
     return (
         <div className="bg-white pt-28">
             <Hero />
-            {/* Our Story Section */}
+            {/* Our Story Section 
             <section className="py-20">
                  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -168,7 +169,9 @@ export default function AboutPage() {
                         </motion.div>
                     </div>
                 </div>
-            </section>
+            </section>*/}
+            
+            <Story />
 
             {/* Our Core Values Section */}
             <section className="py-20 bg-gray-50 md:hidden">
