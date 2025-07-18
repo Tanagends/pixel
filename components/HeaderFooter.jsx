@@ -7,6 +7,7 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetClose
 } from "@/components/ui/sheet";
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -147,7 +148,7 @@ const Logo = ({className}) => {
                 </DialogTrigger>
                 <DialogContent className="bg-gray-900 border-gray-700 text-white">
                     <DialogHeader>
-                        <DialogTitle className="text-orange-400 text-2xl">Get a Free Quote</DialogTitle>
+                    <DialogTitle className="text-orange-400 text-2xl">Get a Free Quote</DialogTitle>
                         <DialogDescription className="text-gray-400">
                             Fill out the form below, and we'll craft a proposal for you.
                         </DialogDescription>
@@ -508,7 +509,6 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="border-t border-gray-700/50 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
                     <p>© {new Date().getFullYear()} PixelCrafte. All Rights Reserved. Built with passion.</p>
                     <div className="flex space-x-4 mt-4 md:mt-0">

@@ -70,7 +70,7 @@ export default function GraphicDesignHero() {
             
             <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                  <motion.h1
-                    className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4"
+                    className="text-4xl md:text-5xl font-extrabold tracking-tighter my-4"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
