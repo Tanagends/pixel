@@ -26,15 +26,15 @@ const promoData = {
         category: 'FOR SCHOOLS & COLLEGES',
         title: 'Unlock a 25% Educational Discount',
         description: "Transform your institution with a captivating online profile, optimized for top search rankings to boost visibility. Effortlessly post announcements, events, and blogs without any code. We provide a professional suite, including custom domain emails, to help you attract and serve students immaculately.",
-        buttonText: 'Claim Your 25% Discount',
+        buttonText: 'Claim Your Discount',
     },
     business: {
         id: 'business',
         icon: <IconBriefcase className="text-orange-300" />,
-        category: 'FOR ENTERPRISES & SMES',
-        title: 'Power Up Your Business with 15% Off',
-        description: "Supercharge your online presence! We optimize your site for high search rankings to elevate sales and customer reach. Utilize autonomous digital tools for blogs and articles—no code required. Perfect for SMEs ready to grow. We write code once. You use it forever!",
-        buttonText: 'Get Your 15% Discount',
+        category: 'FOR STARTUPS',
+        title: 'Power Up Your StartUp with 10% Off',
+        description: "Elevate your startup with our startup package, designed to give you a professional edge. Our package includes a website with free domain, 10 Emails, Business Cards (up to 5 members), Company Profile, Letter Head, Brochure (Trifold), Social Media Setup, Invoices & Quotations Template.",
+        buttonText: 'Get Your Discount',
     }
 };
 
@@ -82,7 +82,7 @@ const PromoPanel = ({ data, isActive }) => {
                     <motion.span variants={itemVariants} className={`font-semibold text-sm tracking-widest uppercase text-orange-400`}>
                         {data.category}
                     </motion.span>
-                    <motion.h3 variants={itemVariants} className="text-4xl lg:text-5xl font-bold text-white mt-3 mb-5">
+                    <motion.h3 variants={itemVariants} className="text-2xl lg:text-4xl font-bold text-white mt-3 mb-5">
                         {data.title}
                     </motion.h3>
                     <motion.p variants={itemVariants} className="max-w-xl text-gray-300 mb-8">
@@ -109,7 +109,7 @@ const PromoPanel = ({ data, isActive }) => {
 // Main PromotionSection Component
 //================================================================//
 export default function PromotionSection() {
-    const [activePromo, setActivePromo] = useState('education');
+    const [activePromo, setActivePromo] = useState('business');
 
     const handleToggle = (promo) => {
         if (promo !== activePromo) {
@@ -140,7 +140,7 @@ export default function PromotionSection() {
     };
 
     return (
-        <section className="py-24 md:py-32 bg-black overflow-hidden">
+        <section className="py-24 md:py-32 bg-black overflow-hidden" id="promotion-section">
             <div className="container mx-auto px-6">
                 
                 <div className="text-center mb-12">
@@ -161,14 +161,14 @@ export default function PromotionSection() {
 
                     {/* Toggle Switch */}
                     <div className="absolute top-6 left-1/2 -translate-x-1/2 z-20 flex items-center bg-black/50 border border-white/10 rounded-full p-1">
+                        <ToggleButton promoId="business">For StartUps</ToggleButton>
                         <ToggleButton promoId="education">For Schools</ToggleButton>
-                        <ToggleButton promoId="business">For Business</ToggleButton>
                     </div>
 
                     {/* Content Panels */}
                     <div className="relative w-full h-full">
-                        <PromoPanel data={promoData.education} isActive={activePromo === 'education'} />
                         <PromoPanel data={promoData.business} isActive={activePromo === 'business'} />
+                        <PromoPanel data={promoData.education} isActive={activePromo === 'education'} />
                     </div>
                 </div>
 
