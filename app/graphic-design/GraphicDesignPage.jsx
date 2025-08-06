@@ -7,7 +7,6 @@ import { graphicDesigns } from '@/assets';
 import { Marquee } from "@/components/magicui/marquee";
 import { Pen, PenLineIcon } from 'lucide-react';
 import { allProjects } from '@/assets';
-import { all } from 'axios';
 import { GetFreeQuote } from '@/components/HeaderFooter';
 
 

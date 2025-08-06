@@ -15,7 +15,7 @@ export const graphicDesigns = [
     price: 5,
     duration: "1 day",
     image: {
-      src: "/images/zimtech-engineering-business-card.png",
+      src: "/images/jambsmash-business-card.png",
       alt: "Professionally designed business card",
     },
   },
@@ -35,7 +35,7 @@ export const graphicDesigns = [
     price: 10,
     duration: "2 days",
     image: {
-      src: "/images/serenee.jpg",
+      src: "/images/jambsmash-flyer.webp",
       alt: "Engaging social media ad graphic",
     },
   },

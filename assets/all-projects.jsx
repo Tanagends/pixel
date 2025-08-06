@@ -39,10 +39,10 @@
             tags: ["Logo Design", "Brand Identity", "Adobe Illustrator"]
         },
         {
-            title: "Zimtech Engineering Business Card",
+            title: "Jambsmash Investments Business Card",
             category: "Graphic Design",
-            description: "A professional business card design for Zimtech Engineering, showcasing their brand identity.",
-            img: "/images/zimtech-engineering-business-card.png",
+            description: "A professional business card design for Jambsmash Investments, showcasing their brand identity.",
+            img: "/images/jambsmash-business-card.png",
             niche: "Branding",
             tags: ["Business Card Design", "Brand Identity", "Adobe Illustrator"]
         },
